@@ -1,0 +1,11 @@
+C:\Users\Jacob Baker\Desktop\adventure_cli\bin\Debug\netcoreapp3.1\adventure_cli.exe
+C:\Users\Jacob Baker\Desktop\adventure_cli\bin\Debug\netcoreapp3.1\adventure_cli.deps.json
+C:\Users\Jacob Baker\Desktop\adventure_cli\bin\Debug\netcoreapp3.1\adventure_cli.runtimeconfig.json
+C:\Users\Jacob Baker\Desktop\adventure_cli\bin\Debug\netcoreapp3.1\adventure_cli.runtimeconfig.dev.json
+C:\Users\Jacob Baker\Desktop\adventure_cli\bin\Debug\netcoreapp3.1\adventure_cli.dll
+C:\Users\Jacob Baker\Desktop\adventure_cli\bin\Debug\netcoreapp3.1\adventure_cli.pdb
+C:\Users\Jacob Baker\Desktop\adventure_cli\obj\Debug\netcoreapp3.1\adventure_cli.csprojAssemblyReference.cache
+C:\Users\Jacob Baker\Desktop\adventure_cli\obj\Debug\netcoreapp3.1\adventure_cli.AssemblyInfoInputs.cache
+C:\Users\Jacob Baker\Desktop\adventure_cli\obj\Debug\netcoreapp3.1\adventure_cli.AssemblyInfo.cs
+C:\Users\Jacob Baker\Desktop\adventure_cli\obj\Debug\netcoreapp3.1\adventure_cli.dll
+C:\Users\Jacob Baker\Desktop\adventure_cli\obj\Debug\netcoreapp3.1\adventure_cli.pdb
