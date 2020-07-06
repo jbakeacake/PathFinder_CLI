@@ -15,17 +15,17 @@ and even basic necessities (e.g. dumping out the available commands, checking st
 - [ ] General Commands:
   - [ ] save : saves the user's current position in the graph
   - [ ] exit : saves then exits the user from the game
-  - [ ] check <entity> : prints out all available information of an entity
+  - [ ] check < entity > : prints out all available information of an entity
     - [ ] Health : prints Current HP / Max HP
     - [ ] Inventory : prints all items in Inventory, and Available Slots / Max Slots
     - [ ] Stats : prints all stats of the user (Const, Str, Dex, Intelligence)
-  - [ ] use <item> : utilizes an item in a user's inventory
+  - [ ] use < item > : utilizes an item in a user's inventory
 - [ ] Path Commands:
-  - [ ] Path <direction> : traverses the user down the path (left or right, through or around, under or over, etc.)
+  - [ ] Path < direction > : traverses the user down the path (left or right, through or around, under or over, etc.)
 - [ ] Combat Commands:
-  - [ ] Attack <weapon> : Attacks the opponent with a weapon
-  - [ ] Block <shield/dodge> : Blocks/Dodges an incoming attack
-  - [ ] Magic <spell> : casts a spell that the user knows
+  - [ ] Attack < weapon > : Attacks the opponent with a weapon
+  - [ ] Block < shield/dodge > : Blocks/Dodges an incoming attack
+  - [ ] Magic < spell > : casts a spell that the user knows
 - [ ] Shop Commands:
   - [ ] check <entity> : prints details about the item, and its cost
   - [ ] buy <item> : buys an item in a shop node
