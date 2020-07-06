@@ -60,6 +60,6 @@ public | INode | Current | Yes | Yes | The current Node the user is in -- by def
 KEYWORD | RETURN | NAME | PARAMETERS | DESC.
 --------|--------|------|------------|------
 private | void | ConstructRooms | void | Called when the node is initialized; Randomly generates a set of rooms given a list of ```RoomEvent``` enums.
-private | void | ToNextRoom | void | Called when the user enters the next room; Points ```Current``` to our ```Next```; Points ```Next``` to ```Next.Next```
+private | void | ToNextRoom | void | Called when the user enters the next room; Points ```Current``` to ```Current.Next```
 public | DecisionNode | SkipToNext | void | Returns the next decision node this node is pointing at
 
