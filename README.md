@@ -61,5 +61,5 @@ KEYWORD | RETURN | NAME | PARAMETERS | DESC.
 --------|--------|------|------------|------
 private | void | ConstructRooms | void | Called when the node is initialized; Randomly generates a set of rooms given a list of ```RoomEvent``` enums.
 private | void | ToNextRoom | void | Called when the user enters the next room; Points ```Current``` to our ```Next```; Points ```Next``` to ```Next.Next```
-public | DecisionNode | SkipToNext | Returns the next decision node this node is pointing at
+public | DecisionNode | SkipToNext | void | Returns the next decision node this node is pointing at
 
