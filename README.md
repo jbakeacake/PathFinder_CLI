@@ -110,7 +110,7 @@ public | void | printInventory | void | Iterates and prints the CharacterEntity'
 ## Attributes
 
 ### Stats
-Stats is a list of a CharacterEntity's basic attributes such as HP, XP, level, Skills, ArmorClass, Speed, and SpellSlots. In the most basic sense, Stats acts as a datasack for an entities basic attributes.
+Stats is a list of a CharacterEntity's basic attributes such as HP, XP, level, Skills, ArmorClass, Speed, and SpellSlots. In the most basic sense, Stats acts as a datasack for an entity's basic attributes.
 
 #### Stats Structure
 KEYWORD | TYPE | LABEL | GET | SET | DESC.
