@@ -122,7 +122,7 @@ public | int | \_level | Yes | Yes | The level calculated by dividing \_XP by 10
 public | Dictionary<string, Stat> | \_skills | Yes | Yes | A dictionary of an entity's basic skills (Str, Dex, Int)
 public | int | \_armorClass | Yes | Yes | The ArmorClass rating is based purely on Strength + AC of Armor (e.g. Plate has +5 AC, Leather has +3 AC)
 public | int | \_speed | Yes | Yes | The speed is based purely on dexterity (Dex. Modifier of 1 gives +1 Speed)
-public | int | \_spellSlots | Yes | Yes | The number of spell Slots is based purely on intelligence (Int. Modifier of 2 gives to spell slots)
+public | int | \_spellSlots | Yes | Yes | The number of spell Slots is based purely on intelligence (Int. Modifier of 2 gives 2 spell slots)
 
 #### Stats Methods
 KEYWORD | RETURN | NAME | PARAMETERS | DESC.
