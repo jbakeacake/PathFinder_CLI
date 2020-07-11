@@ -1,29 +1,20 @@
+using adventure_cli._models.events;
+
 namespace adventure_cli._models.graph.interfaces
 {
     /*
-    Our implementation for a Node is going to follow the structure used to build an
-    N-ary tree. In other words, each Node in our tree will have N amount of children,
-    where the relationship is strictly parent-to-child.
+    INode : Interface
 
-    Each node will contain information about the setting, and contain a set of enums
-    of the possible following rooms.
+    Objects that implement this interface are purely dumb data sacks. They hold information regarding the 'event' that takes place
+    in the node's room. Event data contains the setting and any interactable entities (enemies, chests, doors, obstacles, etc.).
+    The event data also contains how much experience the user should be get after they complete the room, as well as treasures.
 
-    Each node will act strictly as the decision-maker/controller for our player. We can
-    think of this design as each node being its own minicontroller on how the player traverses
-    through the game.
+    This is a contract that any classes that implement this interface must contain the following methods:
 
-    -----
-    Structure
-
-    + : public
-    - : private
-    # : protected
-
-    + RoomSet : HashSet<EventNode>
-    + Rooms : LinkedList<SingularNode> // Contains a generated structure of "Singular Nodes" built from our possible room enums
+    > GetRoomEvent(void) -> RoomEvent // Gets the event occuring in this node's room
     */
     public interface INode
     {
-         
+        RoomEvent GetRoomEvent();
     }
 }
