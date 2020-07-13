@@ -17,6 +17,14 @@ namespace adventure_cli.Helpers
             return items.ToArray();
         }
 
+        public static CharacterData[] SeedPlayerData()
+        {
+            var playerData = System.IO.File.ReadAllText("Helpers/Seeds/SeedPlayerData.json");
+            var players = JsonConvert.DeserializeObject<List<CharacterData>>(playerData);
+
+            return players.ToArray();
+        }
+
         public static CharacterData[] SeedEnemyData()
         {
             var characterData = System.IO.File.ReadAllText("Helpers/Seeds/SeedEnemyData.json");

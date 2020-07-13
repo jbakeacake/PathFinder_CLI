@@ -128,6 +128,19 @@ namespace adventure_cli.Migrations
                     b.HasData(
                         new
                         {
+                            Id = 999,
+                            Dexterity = 2,
+                            HP = 10,
+                            Intelligence = 1,
+                            Level = 0,
+                            Max_HP = 10,
+                            Name = "Django",
+                            Strength = 3,
+                            Type = "Player",
+                            XP = 0
+                        },
+                        new
+                        {
                             Id = 1,
                             Dexterity = 2,
                             HP = 10,

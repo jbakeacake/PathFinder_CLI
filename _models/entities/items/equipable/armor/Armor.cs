@@ -7,6 +7,11 @@ namespace adventure_cli._models.entities.items.equipable.armor
         {
         }
 
+        public override string ToString()
+        {
+            return $"> {_name} | {_goldValue}gp | DEF: {_armorRating} | Durability: {_currentDurability} / {_maxDurability}";
+        }
+
 
         /**
         NullifyValue(void) -> void

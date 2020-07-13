@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using adventure_cli._data;
+using adventure_cli._models.characterData;
 using adventure_cli._models.entities.items.equipable.weapon;
 using AutoMapper;
 
@@ -9,35 +10,32 @@ namespace adventure_cli._controllers
 {
     public class WeaponController
     {
-        
         private readonly WeaponRepository _repo;
-        private readonly IMapper _mapper;
-
-        public WeaponController(WeaponRepository repo, IMapper mapper)
+        private readonly Mapper _mapper;
+        public WeaponController(WeaponRepository repo, Mapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
         }
 
-        public async Task<Weapon> GetWeapon(int id)
+        public async Task<Weapon> GetEntity(int id)
         {
-            var weaponFromRepo = await _repo.FetchOne(id);
-            var weapon = _mapper.Map<Weapon>(weaponFromRepo);
-            
+            WeaponData weaponData = (WeaponData)(await _repo.FetchOne(id)); // For now let's deal with having to cast our repo data
+            Weapon weapon = _mapper.Map<Weapon>(weaponData);
             return weapon;
         }
 
-        public async Task<IEnumerable<Weapon>> GetRandomWeaponSet(int numberInSet)
+        public async Task<IEnumerable<Weapon>> GetRandomSet(int numberInSet)
         {
-            int weaponTableCount = await _repo.GetCount();
+            int tableCount = await _repo.GetCount();
             var rand = new Random();
 
             List<Weapon> weaponsToReturn = new List<Weapon>();
 
-            for(int i = 0; i < numberInSet; i++)
+            for (int i = 0; i < numberInSet; i++)
             {
-                var potion = await this.GetWeapon(rand.Next(1, weaponTableCount + 1));
-                weaponsToReturn.Add(potion);
+                var weapon = await this.GetEntity(rand.Next(1, tableCount + 1));
+                weaponsToReturn.Add(weapon);
             }
 
             return weaponsToReturn;

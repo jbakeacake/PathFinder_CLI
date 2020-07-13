@@ -7,11 +7,10 @@ namespace adventure_cli._models.entities.characters
     public class PlayerEntity : CharacterEntity
     {
         private int _maxXP { get; set; }
-        public PlayerEntity(int Id, string name, bool interactable, Stats stats, Inventory inventory) : base(Id, name, interactable, stats._XP, stats, inventory)
+        public PlayerEntity(int Id, string name, int XP, string type, Stats stats, Inventory inventory) : base(Id, name, true, XP, type, stats, inventory)
         {
             _maxXP = ((_XP / 100) + 1) * 100;
         }
-
         public void IncreaseXPCap()
         {
             _maxXP += 100;

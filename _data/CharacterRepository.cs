@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using adventure_cli._models.characterData;
 using Microsoft.EntityFrameworkCore;
 
 namespace adventure_cli._data

@@ -17,6 +17,9 @@ namespace adventure_cli._data
                 Seed.SeedArmorData()
             );
             modelBuilder.Entity<CharacterData>().HasData(
+                Seed.SeedPlayerData()
+            );
+            modelBuilder.Entity<CharacterData>().HasData(
                 Seed.SeedEnemyData()
             );
             modelBuilder.Entity<WeaponData>().HasData(
@@ -25,6 +28,7 @@ namespace adventure_cli._data
             modelBuilder.Entity<PotionData>().HasData(
                 Seed.SeedPotionData()
             );
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)

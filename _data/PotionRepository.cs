@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using adventure_cli._models.characterData;
+using adventure_cli._models.entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace adventure_cli._data

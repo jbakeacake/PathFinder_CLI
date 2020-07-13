@@ -8,7 +8,7 @@ using adventure_cli._data;
 namespace adventure_cli.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200713035151_InitialCreate")]
+    [Migration("20200713203420_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -128,6 +128,19 @@ namespace adventure_cli.Migrations
                     b.ToTable("Character_Tbl");
 
                     b.HasData(
+                        new
+                        {
+                            Id = 999,
+                            Dexterity = 2,
+                            HP = 10,
+                            Intelligence = 1,
+                            Level = 0,
+                            Max_HP = 10,
+                            Name = "Django",
+                            Strength = 3,
+                            Type = "Player",
+                            XP = 0
+                        },
                         new
                         {
                             Id = 1,

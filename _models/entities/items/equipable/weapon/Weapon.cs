@@ -26,7 +26,7 @@ namespace adventure_cli._models.entities.items.equipable.weapon
 
         public override string ToString()
         {
-            return $"> {_name} | {_goldValue}gp | DMG: {_minDamage} - {_maxDamage} | DURA: {_currentDurability} / {_maxDurability}";
+            return $"> {_name} | {_goldValue}gp | DMG: {_minDamage} - {_maxDamage} | Durability: {_currentDurability} / {_maxDurability}";
         }
 
     }

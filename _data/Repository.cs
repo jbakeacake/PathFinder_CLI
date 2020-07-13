@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace adventure_cli._data
 {
-    public abstract class Repository : IRepository
+    public abstract class Repository
     {
         protected readonly DataContext _context;
 
@@ -11,7 +11,6 @@ namespace adventure_cli._data
         {
             _context = context;
         }
-
         public void Add<T>(T entity) where T : class
         {
             _context.Add(entity);

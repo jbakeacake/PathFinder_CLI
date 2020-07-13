@@ -1,4 +1,5 @@
 using adventure_cli._models.characterData;
+using adventure_cli._models.entities.characters;
 using adventure_cli._models.entities.items.consumable;
 using adventure_cli._models.entities.items.equipable.armor;
 using adventure_cli._models.entities.items.equipable.weapon;

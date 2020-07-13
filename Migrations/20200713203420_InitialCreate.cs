@@ -105,6 +105,11 @@ namespace adventure_cli.Migrations
             migrationBuilder.InsertData(
                 table: "Character_Tbl",
                 columns: new[] { "Id", "Dexterity", "HP", "Intelligence", "Level", "Max_HP", "Name", "Strength", "Type", "XP" },
+                values: new object[] { 999, 2, 10, 1, 0, 10, "Django", 3, "Player", 0 });
+
+            migrationBuilder.InsertData(
+                table: "Character_Tbl",
+                columns: new[] { "Id", "Dexterity", "HP", "Intelligence", "Level", "Max_HP", "Name", "Strength", "Type", "XP" },
                 values: new object[] { 1, 2, 10, 2, 0, 10, "Enemy 1", 2, "Enemy", 20 });
 
             migrationBuilder.InsertData(

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using adventure_cli._models.characterData;
 using Microsoft.EntityFrameworkCore;
 
 namespace adventure_cli._data
@@ -9,7 +10,6 @@ namespace adventure_cli._data
         public ArmorRepository(DataContext context) : base(context)
         {
         }
-
         public override async Task<IEnumerable<object>> FetchAll()
         {
             var armors = await _context.Armor_Tbl.ToListAsync();

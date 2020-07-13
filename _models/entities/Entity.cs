@@ -1,3 +1,5 @@
+using System;
+
 namespace adventure_cli._models.entities
 {
     public abstract class Entity
