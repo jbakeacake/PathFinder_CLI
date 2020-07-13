@@ -60,7 +60,7 @@ namespace adventure_cli.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "WeaponData",
+                name: "Weapon_Tbl",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -74,27 +74,7 @@ namespace adventure_cli.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WeaponData", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Inventory_Tbl",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ItemId = table.Column<int>(nullable: false),
-                    CharacterDataId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Inventory_Tbl", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Inventory_Tbl_Character_Tbl_CharacterDataId",
-                        column: x => x.CharacterDataId,
-                        principalTable: "Character_Tbl",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_Weapon_Tbl", x => x.Id);
                 });
 
             migrationBuilder.InsertData(
@@ -138,24 +118,34 @@ namespace adventure_cli.Migrations
                 values: new object[] { 3, 2, 10, 2, 0, 10, "Enemy 3", 2, "Enemy", 20 });
 
             migrationBuilder.InsertData(
-                table: "WeaponData",
+                table: "Potion_Tbl",
+                columns: new[] { "Id", "GoldValue", "HealValue", "Name" },
+                values: new object[] { 1, 5, 3, "Lesser Healing Potion" });
+
+            migrationBuilder.InsertData(
+                table: "Potion_Tbl",
+                columns: new[] { "Id", "GoldValue", "HealValue", "Name" },
+                values: new object[] { 2, 10, 6, "Healing Potion" });
+
+            migrationBuilder.InsertData(
+                table: "Potion_Tbl",
+                columns: new[] { "Id", "GoldValue", "HealValue", "Name" },
+                values: new object[] { 3, 15, 9, "Greater Healing Potion" });
+
+            migrationBuilder.InsertData(
+                table: "Weapon_Tbl",
                 columns: new[] { "Id", "CurrentDurability", "GoldValue", "MaxDamage", "MaxDurability", "MinDamage", "Name" },
                 values: new object[] { 1, 5, 15, 4, 5, 2, "Longsword" });
 
             migrationBuilder.InsertData(
-                table: "WeaponData",
+                table: "Weapon_Tbl",
                 columns: new[] { "Id", "CurrentDurability", "GoldValue", "MaxDamage", "MaxDurability", "MinDamage", "Name" },
                 values: new object[] { 2, 3, 2, 2, 3, 1, "Fat Stick" });
 
             migrationBuilder.InsertData(
-                table: "WeaponData",
+                table: "Weapon_Tbl",
                 columns: new[] { "Id", "CurrentDurability", "GoldValue", "MaxDamage", "MaxDurability", "MinDamage", "Name" },
                 values: new object[] { 3, 5, 8, 3, 5, 1, "Dagger" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Inventory_Tbl_CharacterDataId",
-                table: "Inventory_Tbl",
-                column: "CharacterDataId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -164,16 +154,13 @@ namespace adventure_cli.Migrations
                 name: "Armor_Tbl");
 
             migrationBuilder.DropTable(
-                name: "Inventory_Tbl");
+                name: "Character_Tbl");
 
             migrationBuilder.DropTable(
                 name: "Potion_Tbl");
 
             migrationBuilder.DropTable(
-                name: "WeaponData");
-
-            migrationBuilder.DropTable(
-                name: "Character_Tbl");
+                name: "Weapon_Tbl");
         }
     }
 }

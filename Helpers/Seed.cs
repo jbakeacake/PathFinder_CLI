@@ -9,7 +9,7 @@ namespace adventure_cli.Helpers
 {
     public class Seed
     {
-        public static ArmorData[] GetSeedArmorData()
+        public static ArmorData[] SeedArmorData()
         {
             var armorData = System.IO.File.ReadAllText("Helpers/Seeds/SeedArmorData.json");
             var items = JsonConvert.DeserializeObject<List<ArmorData>>(armorData);
@@ -17,7 +17,7 @@ namespace adventure_cli.Helpers
             return items.ToArray();
         }
 
-        public static CharacterData[] GetSeedEnemyData()
+        public static CharacterData[] SeedEnemyData()
         {
             var characterData = System.IO.File.ReadAllText("Helpers/Seeds/SeedEnemyData.json");
             var characters = JsonConvert.DeserializeObject<List<CharacterData>>(characterData);
@@ -25,12 +25,20 @@ namespace adventure_cli.Helpers
             return characters.ToArray();
         }
 
-        public static WeaponData[] GetSeedWeaponData()
+        public static WeaponData[] SeedWeaponData()
         {
             var weaponData = System.IO.File.ReadAllText("Helpers/Seeds/SeedWeaponData.json");
             var weapons = JsonConvert.DeserializeObject<List<WeaponData>>(weaponData);
 
             return weapons.ToArray();
+        }
+
+        public static PotionData[] SeedPotionData()
+        {
+            var potionData = System.IO.File.ReadAllText("Helpers/Seeds/SeedPotionData.json");
+            var potions = JsonConvert.DeserializeObject<List<PotionData>>(potionData);
+
+            return potions.ToArray();
         }
     }
 }

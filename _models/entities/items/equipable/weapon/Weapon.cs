@@ -24,5 +24,10 @@ namespace adventure_cli._models.entities.items.equipable.weapon
             _maxDamage = 0;
         }
 
+        public override string ToString()
+        {
+            return $"> {_name} | {_goldValue}gp | DMG: {_minDamage} - {_maxDamage} | DURA: {_currentDurability} / {_maxDurability}";
+        }
+
     }
 }

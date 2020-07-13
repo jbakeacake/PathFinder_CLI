@@ -18,5 +18,10 @@ namespace adventure_cli._models.entities.items.consumable
         {
             Console.WriteLine($"{_name} used. Healed for {_healValue}.");
         }
+
+        public override string ToString()
+        {
+            return $"> {_name} | {_goldValue}gp | Heals for {_healValue}";
+        }
     }
 }

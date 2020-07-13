@@ -167,25 +167,6 @@ namespace adventure_cli.Migrations
                         });
                 });
 
-            modelBuilder.Entity("adventure_cli._models.characterData.ItemData", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CharacterDataId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ItemId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CharacterDataId");
-
-                    b.ToTable("Inventory_Tbl");
-                });
-
             modelBuilder.Entity("adventure_cli._models.characterData.PotionData", b =>
                 {
                     b.Property<int>("Id")
@@ -204,6 +185,29 @@ namespace adventure_cli.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Potion_Tbl");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            GoldValue = 5,
+                            HealValue = 3,
+                            Name = "Lesser Healing Potion"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            GoldValue = 10,
+                            HealValue = 6,
+                            Name = "Healing Potion"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            GoldValue = 15,
+                            HealValue = 9,
+                            Name = "Greater Healing Potion"
+                        });
                 });
 
             modelBuilder.Entity("adventure_cli._models.characterData.WeaponData", b =>
@@ -232,7 +236,7 @@ namespace adventure_cli.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WeaponData");
+                    b.ToTable("Weapon_Tbl");
 
                     b.HasData(
                         new
@@ -265,15 +269,6 @@ namespace adventure_cli.Migrations
                             MinDamage = 1,
                             Name = "Dagger"
                         });
-                });
-
-            modelBuilder.Entity("adventure_cli._models.characterData.ItemData", b =>
-                {
-                    b.HasOne("adventure_cli._models.characterData.CharacterData", "Character")
-                        .WithMany()
-                        .HasForeignKey("CharacterDataId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

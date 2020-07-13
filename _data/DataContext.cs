@@ -10,16 +10,20 @@ namespace adventure_cli._data
 {
     public class DataContext : DbContext
     {
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ArmorData>().HasData(
-                Seed.GetSeedArmorData()
+                Seed.SeedArmorData()
             );
             modelBuilder.Entity<CharacterData>().HasData(
-                Seed.GetSeedEnemyData()
+                Seed.SeedEnemyData()
             );
             modelBuilder.Entity<WeaponData>().HasData(
-                Seed.GetSeedWeaponData()
+                Seed.SeedWeaponData()
+            );
+            modelBuilder.Entity<PotionData>().HasData(
+                Seed.SeedPotionData()
             );
         }
 
@@ -33,5 +37,6 @@ namespace adventure_cli._data
         public DbSet<CharacterData> Character_Tbl { get; set; }
         public DbSet<PotionData> Potion_Tbl { get; set; }
         public DbSet<ArmorData> Armor_Tbl { get; set; }
+        public DbSet<WeaponData> Weapon_Tbl { get; set; }
     }
 }
