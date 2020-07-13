@@ -1,0 +1,29 @@
+[
+  {
+    "Id": 1,
+    "Name": "Longsword",
+    "GoldValue": 15,
+    "MinDamage": 2,
+    "MaxDamage": 4,
+    "CurrentDurability": 5,
+    "MaxDurability": 5
+  },
+  {
+    "Id": 2,
+    "Name": "Fat Stick",
+    "GoldValue": 2,
+    "MinDamage": 1,
+    "MaxDamage": 2,
+    "CurrentDurability": 3,
+    "MaxDurability": 3
+  },
+  {
+    "Id": 3,
+    "Name": "Dagger",
+    "GoldValue": 8,
+    "MinDamage": 1,
+    "MaxDamage": 3,
+    "CurrentDurability": 5,
+    "MaxDurability": 5
+  }
+]

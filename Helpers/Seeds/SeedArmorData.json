@@ -1,0 +1,43 @@
+[
+    {
+        "Id": 1,
+        "Name": "Leather Armor",
+        "GoldValue": 10,
+        "ArmorRating": 2,
+        "CurrentDurability": 5,
+        "MaxDurability": 5
+    },
+    {
+        "Id": 2,
+        "Name": "Leather Armor 1",
+        "GoldValue": 10,
+        "ArmorRating": 2,
+        "CurrentDurability": 5,
+        "MaxDurability": 5
+    },
+    {
+        "Id": 3,
+        "Name": "Leather Armor 2",
+        "GoldValue": 10,
+        "ArmorRating": 2,
+        "CurrentDurability": 5,
+        "MaxDurability": 5
+    },
+    {
+        "Id": 4,
+        "Name": "Leather Armor 3",
+        "GoldValue": 10,
+        "ArmorRating": 2,
+        "CurrentDurability": 5,
+        "MaxDurability": 5
+    },
+    {
+        "Id": 5,
+        "Name": "Leather Armor 4",
+        "GoldValue": 10,
+        "ArmorRating": 2,
+        "CurrentDurability": 5,
+        "MaxDurability": 5
+    }
+
+]

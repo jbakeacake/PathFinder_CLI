@@ -1,0 +1,20 @@
+[
+    {
+        "Id": 1,
+        "Name": "Lesser Healing Potion",
+        "GoldValue": 5,
+        "HealValue": 3
+    },
+    {
+        "Id": 2,
+        "Name": "Healing Potion",
+        "GoldValue": 10,
+        "HealValue": 6
+    },
+    {
+        "Id": 3,
+        "Name": "Greater Healing Potion",
+        "GoldValue": 15,
+        "HealValue": 9
+    }
+]
