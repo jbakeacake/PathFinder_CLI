@@ -11,11 +11,8 @@ namespace adventure_cli._models.characterData
     public class ItemData
     {
         public int Id { get; set; }
-        public int WeaponPieceID { get; set; }
-        public WeaponData WeaponPiece { get; set; }
-        public int ArmorPieceId { get; set; } // Is NULL if item is not Armor
-        public ArmorData ArmorPiece { get; set; }
-        public int PotionId { get; set; }
-        public PotionData Potion { get; set; }
+        public int ItemId { get; set; }
+        public int CharacterDataId { get; set; }
+        public CharacterData Character { get; set; }
     }
 }

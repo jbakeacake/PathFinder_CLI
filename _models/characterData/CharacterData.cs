@@ -6,6 +6,7 @@ namespace adventure_cli._models.characterData
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Type { get; set; }
         public int Max_HP { get; set; }
         public int HP { get; set; }
         public int XP { get; set; }
@@ -13,6 +14,5 @@ namespace adventure_cli._models.characterData
         public int Strength { get; set; }
         public int Dexterity { get; set; }
         public int Intelligence { get; set; }
-        public ICollection<ItemData> Inventory { get; set; }
     }
 }

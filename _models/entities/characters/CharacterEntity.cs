@@ -19,17 +19,8 @@ namespace adventure_cli._models.entities.characters
             _stats = stats;
             _inventory = inventory;
         }
-        public void printNameAndLevel() {
-            Console.WriteLine($"{_name} | {_level}");
+        public override string ToString() {
+            return $"{_name} | Level : {_level}";
         }
-        public void printStats()
-        {
-
-        }
-        public void printInventory()
-        {
-
-        }
-
     }
 }

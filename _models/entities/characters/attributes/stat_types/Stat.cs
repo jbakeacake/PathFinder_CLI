@@ -2,7 +2,7 @@ namespace adventure_cli._models.entities.characters.attributes.stat_types
 {
     public class Stat
     {
-        private string _name { get; set; }
+        public string _name { get; set; }
         public int _value { get; set; }
         public Stat(string name, int value)
         {

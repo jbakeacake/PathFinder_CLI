@@ -39,21 +39,23 @@ namespace adventure_cli._models.player.attributes
             _spellSlots = skills["Intelligence"].GetModifier();
         }
 
-        // TODO: PUT THIS IN A PLAYER CLASS!
-        public void IncreaseSkill(string skillName, int points)
+        public override String ToString()
         {
-            if (!_skills.ContainsKey(skillName)) throw new Exception("Skill to increase does not exist");
+            string toRtn = "\n";
+            toRtn += "--- STATS --- \n";
+            toRtn += $"HP : {_HP} / {_maxHP} \n";
+            toRtn += $"XP : {_XP} / {((_XP/100) + 1) * 100} \n";
+            toRtn += $"Lvl : {_level} \n";
+            toRtn += $"Defense : {_armorClass} \n";
+            toRtn += $"Speed : {_speed} \n";
+            toRtn += $"Spell Slots : {_spellSlots} \n";
+            toRtn += "--- SKILLS --- \n";
+            foreach(Stat skill in _skills.Values)
+            {
+                toRtn += $"{skill._name} : {skill._value} \n";
+            }
 
-            _skills[skillName].IncreaseValueBy(points);
-            this.UpdateBaseStats();
-
-        }
-        // TODO: PUT THIS IN A PLAYER CLASS!
-        public void UpdateBaseStats()
-        {
-            _armorClass = _skills["Strength"].GetModifier();
-            _speed = _skills["Dexterity"].GetModifier();
-            _spellSlots = _skills["Intelligence"].GetModifier();
+            return toRtn;
         }
     }
 }
