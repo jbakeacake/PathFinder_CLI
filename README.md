@@ -68,21 +68,20 @@ public | DecisionNode | SkipToNext | void | Returns the next decision node this 
 ### Entity
 An entity acts as a blanket class for any items, objects, or characters that a player can interact with. Each entity should have an ID number, a name, and should describe whether the entity is interactable or not (if the user can use any verbal commands on an object).
 
-Some Entities that are derived from this class are:
+Some Entities that are directly derived from this class are:
 - CharacterEntity.cs
-- PlayerEntity.cs
-- Equipable.cs
-- Consumable.cs
+- Item.cs
 
 #### Entity Structure
 KEYWORD | TYPE | LABEL | GET | SET | DESC.
 --------|------|-------|-----|-----|------
 public | int | \_Id | Yes | No | The Id of this entity
 public | string | \_name | Yes | Yes | The name of the entity
-public | bool | \_interactable | Yes | Yes | Describes whether a user can perform actions on the entity
+
+## Characters
 
 ### CharacterEntity : Entity
-A CharacterEntity is any entity that a user can interact with verbally or combatively, and additionally is used to create the user as well. This includes NPCs, Enemies, and the Player itself. Every entity should include an Id, Name, interactable bool, level, stats, and inventory. These data for each entity can be found on the CharacterData table on our database.
+A CharacterEntity is a concrete class that is any entity a user can interact with verbally or combatively, and additionally is used to create the user as well. This includes NPCs, Enemies, and the Player itself. Every entity should include an Id, Name, interactable bool, level, stats, and inventory. These data for each entity can be found on the CharacterData table on our database.
 
 Some CharacterEntities that are derived from this class are:
 - PlayerEntity.cs
@@ -94,8 +93,6 @@ KEYWORD | TYPE | LABEL | GET | SET | DESC.
 --------|------|-------|-----|-----|------
 public | int | \_Id | Yes | No | The Id of this entity
 public | string | \_name | Yes | Yes | The name of the entity
-public | bool | \_interactable | Yes | Yes | Describes whether a user can perform actions on the entity
-public | int | \_XP | Yes | Yes | The total, current amount of XP this entity has
 public | int | \_level | Yes | Yes | The level calculated by dividing \_XP by 100
 public | Stats | \_stats | Yes | Yes | A Collection of Stats that this entity has (Skills, ArmorClass, SpellSlots, etc.)
 public | Inventory | \_inventory | Yes | Yes | The inventory of the entity; contains an assortment of Items (consumable, armor, weapon, etc.)
@@ -106,6 +103,11 @@ KEYWORD | RETURN | NAME | PARAMETERS | DESC.
 public | void | printNameAndLevel | void | Prints the ```_name``` and ```_level``` of this CharacterEntity
 private | void | printStats | void | Prints every ```Stat``` and Stats variable of this entity.
 public | void | printInventory | void | Iterates and prints the CharacterEntity's inventory.
+
+### PlayerEntity : Entity
+A PlayerEntity is a concrete class that should be instantiated once per game instance (i.e. whenever the player starts up the game). This class contains all the information found in any character entity with the addition of a experience cap, and some player-centric methods that modify the player's inventory, stats, and health.
+
+
 
 ## Attributes
 
