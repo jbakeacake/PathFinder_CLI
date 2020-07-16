@@ -1,0 +1,41 @@
+[
+  {
+    "Id": 1,
+    "Name": "Enemy 1",
+    "Type": "Enemy",
+    "Max_HP": "10",
+    "HP": "10",
+    "XP": 20,
+    "Gold": 10,
+    "Level": 0,
+    "Strength": 2,
+    "Dexterity": 2,
+    "Intelligence": 2
+  },
+  {
+    "Id": 2,
+    "Name": "Enemy 2",
+    "Type": "Enemy",
+    "Max_HP": "10",
+    "HP": "10",
+    "XP": 20,
+    "Gold": 10,
+    "Level": 0,
+    "Strength": 2,
+    "Dexterity": 2,
+    "Intelligence": 2
+  },
+  {
+    "Id": 3,
+    "Name": "Enemy 3",
+    "Type": "Enemy",
+    "Max_HP": "10",
+    "HP": "10",
+    "XP": 20,
+    "Gold": 20,
+    "Level": 0,
+    "Strength": 2,
+    "Dexterity": 2,
+    "Intelligence": 2
+  }
+]
