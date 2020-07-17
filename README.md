@@ -11,27 +11,33 @@ To run the application, start by opening up the directory ```../path/to/adventur
 This section goes over all the functionalities that critical for the User's experience. This can include how the user interacts with the CLI, quality of life (QOL) features,
 and even basic necessities (e.g. dumping out the available commands, checking stats, using items, etc.).
 
-- [ ] User can dump available commands using a '-h' or '-help' flag.
-- [ ] General Commands:
-  - [ ] save : saves the user's current position in the graph
-  - [ ] exit : saves then exits the user from the game
-  - [ ] check < entity > : prints out all available information of an entity
-    - [ ] Health : prints Current HP / Max HP
-    - [ ] Inventory : prints all items in Inventory, and Available Slots / Max Slots
-    - [ ] Stats : prints all stats of the user (Const, Str, Dex, Intelligence)
-  - [ ] use < item > : utilizes an item in a user's inventory
-- [ ] Path Commands:
-  - [ ] Path < direction > : traverses the user down the path (left or right, through or around, under or over, etc.)
-- [ ] Combat Commands:
-  - [ ] Attack < weapon > : Attacks the opponent with a weapon
-  - [ ] Block < shield/dodge > : Blocks/Dodges an incoming attack
-  - [ ] Magic < spell > : casts a spell that the user knows
-- [ ] Shop Commands:
-  - [ ] check <entity> : prints details about the item, and its cost
-  - [ ] buy <item> : buys an item in a shop node
-  - [ ] sell <item> : sells an item in the inventory
-  - [ ] heal : refills the user's health
-
+- [ ] Users are prompted with, at most, 5 different choices that are prepended with numbers. These choices depend on the type of room that the user is in. For instance, if the user is prompted with two  different paths, then the user will be prompted with 2 different choices on their screen (e.g. 1.) Go Left 2.) Go Right). Below are some static pre-made choices the user could make
+  - [ ] Combat Choices:
+    - [ ] 1. Attack with <Weapon/Fists>
+    - [ ] 2. Dodge/Defend
+    - [ ] 3. Spells
+    - [ ] 4. Inventory
+    - [ ] 5. Flee
+  - [ ] Adventuring Choices -- these choices will be completely dependent on the dungeon/room event the user is in.
+  - [ ] Shop Choices:
+    - [ ] Sell
+      - [ ] <Inventory Item 1>
+      - [ ] <Inventory Item 2>
+      - [ ] <Inventory Item N> (where N is the max. space in a user's inventory)
+    - [ ] Buy
+      - [ ] <Shop Item 1>
+      - [ ] <Shop Item 2>
+      - [ ] <Shop Item N> (where N is max. number of items in the shop)
+  - [ ] Level Up Choices:
+    - [ ] Strength
+    - [ ] Dexterity
+    - [ ] Intelligence
+ - [ ] Users also have access to general commands such as:
+   - [ ] save
+   - [ ] exit
+   - [ ] inventory
+   - [ ] stats
+   - [ ] use <item>
 # \_Models
 
 ### DecisionNode : INode
