@@ -37,7 +37,7 @@ and even basic necessities (e.g. dumping out the available commands, checking st
    - [ ] exit
    - [ ] inventory
    - [ ] stats
-   - [ ] use <item>
+   - [ ] use < item >
 # \_Models
 
 ### DecisionNode : INode
