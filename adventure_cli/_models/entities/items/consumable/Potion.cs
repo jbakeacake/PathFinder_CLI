@@ -34,6 +34,7 @@ namespace adventure_cli._models.entities.items.consumable
         public override void Use(PlayerEntity player)
         {
             Consume(player);
+            player._inventory.Remove(this);
         }
     }
 }

@@ -21,7 +21,9 @@ namespace adventure_cli._models.entities.items.equipable
             }
             else
             {
+                Console.WriteLine($"{_name} equipped.");
                 player._equipped.Insert(this);
+                player._inventory.Remove(this);
             }
         }
         public void DecreaseDurability()

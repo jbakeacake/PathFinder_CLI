@@ -1,7 +1,7 @@
 [
     {
         "Id": 1,
-        "Name": "Leather Armor",
+        "Name": "Leather Buckler",
         "GoldValue": 10,
         "ArmorRating": 2,
         "CurrentDurability": 5,

@@ -33,9 +33,14 @@ namespace adventure_cli
             var potion = await game.GetPotion(1);
             var weapon = await game.GetWeapon(1);
             var armor = await game.GetArmor(1);
-            EnemyEntity character = await game.GetCharacter<EnemyEntity>(1);
+            EnemyEntity enemy = await game.GetCharacter<EnemyEntity>(1);
             PlayerEntity player = await game.GetCharacter<PlayerEntity>(999);
             player._inventory.Insert(potion);
+            player._inventory.Insert(weapon);
+            player._inventory.Insert(weapon);
+            player._inventory.Insert(weapon);
+            player._inventory.Insert(weapon);
+            player._inventory.Insert(armor);
             var potionSet = await game.GetRandomPotionSet(3);
             var weaponSet = await game.GetRandomWeaponSet(3);
             var armorSet = await game.GetRandomArmorSet(3);
@@ -43,12 +48,14 @@ namespace adventure_cli
             Console.WriteLine(potion.ToString());
             Console.WriteLine(weapon.ToString());
             Console.WriteLine(armor.ToString());
-            Console.WriteLine(character.ToString());
+            Console.WriteLine(enemy.ToString());
             Console.WriteLine(player.ToString());
+
             while (true)
             {
                 var cmdKey = Console.ReadLine();
                 GeneralCommands.doCommand(cmdKey, player);
+                Options.GetCombatOptions(player, enemy);
             }
         }
     }

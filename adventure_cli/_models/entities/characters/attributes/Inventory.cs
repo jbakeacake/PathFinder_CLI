@@ -6,21 +6,26 @@ namespace adventure_cli._models.entities.characters.attributes
 {
     public class Inventory<T> where T : Entity
     {
-        private readonly int MAX_ITEMS = 4;
+        public int _maxSlots { get; set; }
         public LinkedList<T> _Items;
-        public Inventory()
+        public string _name { get; set; }
+        public Inventory(int maxSlots, string name)
         {
+            _name = name;
+            _maxSlots = maxSlots;
             _Items = new LinkedList<T>();
         }
 
-        public Inventory(LinkedList<T> Items)
+        public Inventory(int maxSlots, string name, LinkedList<T> Items)
         {
+            _name = name;
+            _maxSlots = maxSlots;
             _Items = Items;
         }
 
         public override string ToString()
         {
-            string toRtn = "\n---INVENTORY---\n";
+            string toRtn = $"\n---{_name}---\n";
             foreach(T item in _Items)
             {
                 toRtn += $"{item._name} \n";
@@ -40,7 +45,7 @@ namespace adventure_cli._models.entities.characters.attributes
 
         public bool IsFull()
         {
-            return _Items.Count == MAX_ITEMS;
+            return _Items.Count == _maxSlots;
         }
 
         public T FindItemByName(string name)
@@ -60,7 +65,7 @@ namespace adventure_cli._models.entities.characters.attributes
 
         public bool Insert(T item) 
         {
-            if (_Items.Count >= MAX_ITEMS) return false;
+            if (_Items.Count >= _maxSlots) return false;
 
             _Items.AddLast(new LinkedListNode<T>(item));
 

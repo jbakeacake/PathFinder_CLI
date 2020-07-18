@@ -21,13 +21,15 @@ namespace adventure_cli._models.entities.characters
             _level = stats._XP / 100;
             _stats = stats;
             _inventory = inventory;
+            _equipped = equipped;
         }
         public CharacterEntity(int Id, string name, string type, Stats stats) : base(Id, name)
         {
             _type = type;
             _level = stats._XP / 100;
             _stats = stats;
-            _inventory = new Inventory<Item>();
+            _inventory = new Inventory<Item>(8, "INVENTORY");
+            _equipped = new Inventory<Equipable>(4, "EQUIPPED");
         }
         public override string ToString()
         {

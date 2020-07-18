@@ -30,10 +30,5 @@ namespace adventure_cli._models.entities.items.equipable.weapon
         {
             return $"> {_name} | {_goldValue}gp | DMG: {_minDamage} - {_maxDamage} | Durability: {_currentDurability} / {_maxDurability}";
         }
-
-        public override void Use(PlayerEntity player)
-        {
-            
-        }
     }
 }

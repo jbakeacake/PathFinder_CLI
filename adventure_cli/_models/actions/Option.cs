@@ -3,7 +3,7 @@ using adventure_cli._models.entities.characters;
 
 namespace adventure_cli._models.actions
 {
-    public abstract class Option : IAction
+    public abstract class Option
     {
         public int _index;
         public string _name;
@@ -12,6 +12,6 @@ namespace adventure_cli._models.actions
             _index = index;
             _name = name;
         }
-        public abstract void doAction(PlayerEntity player, [Optional] CharacterEntity other);
+        public abstract void doAction(PlayerEntity player);
     }
 }

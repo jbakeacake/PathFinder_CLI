@@ -20,6 +20,11 @@ namespace adventure_cli._models.actions.commands
                         Exit();
                         break;
                     }
+                case "equipment":
+                    {
+                        Equipment(player);
+                        break;
+                    }
                 case "inventory":
                     {
                         Inventory(player);
@@ -36,9 +41,13 @@ namespace adventure_cli._models.actions.commands
                         item.Use(player);
                         break;
                     }
+                case "remove":
+                    {
+                        RemoveItemInEquipment(keyParts, player);
+                        break;
+                    }
                 default:
                     {
-                        Console.WriteLine("Invalid Command. Type 'commands' to list out all possible commands");
                         break;
                     }
             }
@@ -53,6 +62,18 @@ namespace adventure_cli._models.actions.commands
             }
             return player._inventory.FindItemByName(itemName);
         }
+
+        private static void RemoveItemInEquipment(string[] keyParts, PlayerEntity player)
+        {
+            string itemName = "";
+            for(int i = 1; i < keyParts.Length; i++)
+            {
+                itemName += keyParts[i] + " ";
+            }
+            var equippedItem = player._equipped.FindItemByName(itemName);
+            player._equipped.Remove(player._equipped.FindItemByName(itemName));
+            player._inventory.Insert(equippedItem);
+        }
         private static void Exit()
         {
             Console.WriteLine("Exiting...");
@@ -62,6 +83,11 @@ namespace adventure_cli._models.actions.commands
         private static void Inventory(PlayerEntity player)
         {
             Console.WriteLine(player._inventory.ToString());
+        }
+
+        private static void Equipment(PlayerEntity player)
+        {
+            Console.WriteLine(player._equipped.ToString());
         }
 
         private static void Stats(PlayerEntity player)

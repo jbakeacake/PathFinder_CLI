@@ -21,7 +21,7 @@ namespace adventure_cli.Helpers
 
             Stats stats = new Stats(data.Max_HP, data.XP, data.Gold, data.Level, skills);
             // TODO: Pull Inventory and Equipment data from CharacterData
-            return (T) Activator.CreateInstance(typeof(T), data.Id, data.Name, data.Type, stats, new Inventory<Item>(), new Inventory<Equipable>());
+            return (T) Activator.CreateInstance(typeof(T), data.Id, data.Name, data.Type, stats, new Inventory<Item>(8, "INVENTORY"), new Inventory<Equipable>(4, "EQUIPMENT"));
         }
     }
 }
