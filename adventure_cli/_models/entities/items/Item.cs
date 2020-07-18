@@ -1,15 +1,17 @@
 using System;
 using adventure_cli._models.entities.characters;
 
-namespace adventure_cli._models.entities
+namespace adventure_cli._models.entities.items
 {
-    public abstract class Item : Entity
+    public abstract class Item : Entity, IRewardable
     {
         public int _goldValue { get; set; }
         protected Item(int Id, string name, int goldValue) : base(Id, name)
         {
             _goldValue = goldValue;
         }
+
+        public abstract void Use(PlayerEntity player);
 
         public bool SellToPlayer(PlayerEntity player, CharacterEntity ShopOwner)
         {
@@ -31,6 +33,11 @@ namespace adventure_cli._models.entities
             ShopOwner._inventory.Insert(this);
             player._inventory.Remove(this);
             player._stats._gold += _goldValue;
+        }
+
+        public void RewardToPlayer(PlayerEntity player)
+        {
+            player._inventory.Insert(this);
         }
     }
 }

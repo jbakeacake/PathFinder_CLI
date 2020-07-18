@@ -1,5 +1,3 @@
-using adventure_cli._models.entities.characters;
-
 namespace adventure_cli._models.entities.items.equipable.armor
 {
     public class Armor : Equipable
@@ -24,7 +22,7 @@ namespace adventure_cli._models.entities.items.equipable.armor
         */
         public override void NullifyValue()
         {
-            if(_currentDurability > 0) return;
+            if (_currentDurability > 0) return;
             _goldValue = 0;
             _armorRating = 0;
         }

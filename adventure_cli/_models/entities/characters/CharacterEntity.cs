@@ -1,6 +1,8 @@
 using System;
 using System.Runtime.InteropServices;
 using adventure_cli._models.entities.characters.attributes;
+using adventure_cli._models.entities.items;
+using adventure_cli._models.entities.items.equipable;
 using adventure_cli._models.player.attributes;
 
 namespace adventure_cli._models.entities.characters
@@ -10,9 +12,10 @@ namespace adventure_cli._models.entities.characters
         public string _type { get; set; }
         public int _level { get; set; }
         public Stats _stats { get; set; }
-        public Inventory _inventory { get; set; }
+        public Inventory<Item> _inventory { get; set; }
+        public Inventory<Equipable> _equipped { get; set; } // Equ
 
-        public CharacterEntity(int Id, string name, string type, Stats stats, Inventory inventory) : base(Id, name)
+        public CharacterEntity(int Id, string name, string type, Stats stats, Inventory<Item> inventory, Inventory<Equipable> equipped) : base(Id, name)
         {
             _type = type;
             _level = stats._XP / 100;
@@ -24,7 +27,7 @@ namespace adventure_cli._models.entities.characters
             _type = type;
             _level = stats._XP / 100;
             _stats = stats;
-            _inventory = new Inventory();
+            _inventory = new Inventory<Item>();
         }
         public override string ToString()
         {

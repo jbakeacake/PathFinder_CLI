@@ -1,8 +1,9 @@
+using System;
 using adventure_cli._models.entities.characters;
 
 namespace adventure_cli._models.entities.items.equipable
 {
-    public abstract class Equipable : Item, IRewardable
+    public abstract class Equipable : Item
     {
         public int _maxDurability { get; set; }
         public int _currentDurability { get; set; }
@@ -12,9 +13,16 @@ namespace adventure_cli._models.entities.items.equipable
             _currentDurability = _currentDurability;
         }
 
-        public void RewardToPlayer(PlayerEntity player)
+        public override void Use(PlayerEntity player)
         {
-            player._inventory.Insert(this);
+            if (player._equipped.IsFull())
+            {
+                Console.WriteLine($"Equipment is full. Remove an item from your equipment before equipping {_name}");
+            }
+            else
+            {
+                player._equipped.Insert(this);
+            }
         }
         public void DecreaseDurability()
         {

@@ -3,7 +3,7 @@ using adventure_cli._models.entities.characters;
 
 namespace adventure_cli._models.entities.items.consumable
 {
-    public class Potion : Item, IRewardable
+    public class Potion : Item
     {
         public int _healValue { get; set; }
 
@@ -12,7 +12,7 @@ namespace adventure_cli._models.entities.items.consumable
             _healValue = healValue;
         }
 
-        public void Consume(PlayerEntity player)
+        private void Consume(PlayerEntity player)
         {
             Console.WriteLine($"{_name} used. Healed for {_healValue}.");
             int healthAfterConsume = player._stats._HP + _healValue;
@@ -31,9 +31,9 @@ namespace adventure_cli._models.entities.items.consumable
             return $"> {_name} | {_goldValue}gp | Heals for {_healValue}";
         }
 
-        public void RewardToPlayer(PlayerEntity player)
+        public override void Use(PlayerEntity player)
         {
-            player._inventory.Insert(this);
+            Consume(player);
         }
     }
 }

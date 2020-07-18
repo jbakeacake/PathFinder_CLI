@@ -12,21 +12,22 @@ namespace adventure_cli._models.events
     */
     public abstract class RoomEvent : IRoomEvent
     {
+        public PlayerEntity _player { get; set; }
         public Entity[] _entities { get; set; } // Entities can be doors, enemies, obstacles, etc. These entities have a present need for verbal action -- i.e. a dynamic entity
-        public bool _hasCombat { get; set; }
-        public Entity[] _rewards { get; set; } // a reward could be a item or just experience -- i.e. a static entity
+        public IRewardable[] _rewards { get; set; } // a reward could be a item or just experience -- i.e. a static entity
 
-        protected RoomEvent(Entity[] entities, bool hasCombat, Entity[] rewards)
+        public RoomEvent(PlayerEntity player, Entity[] entities, IRewardable[] rewards)
         {
+            _player = player;
             _entities = entities;
-            _hasCombat = hasCombat;
             _rewards = rewards;
         }
-        public RoomEvent GetEvent()
+        public void RewardPlayer(PlayerEntity player)
         {
-            throw new System.NotImplementedException();
+            foreach(var rewardable in _rewards)
+            {
+                rewardable.RewardToPlayer(player);
+            }
         }
-        public abstract void RewardPlayer(PlayerEntity player);
-
     }
 }

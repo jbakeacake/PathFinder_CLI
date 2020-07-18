@@ -1,17 +1,19 @@
+using System;
 using System.Collections.Generic;
+using adventure_cli._models.entities.items;
 
 namespace adventure_cli._models.entities.characters.attributes
 {
-    public class Inventory
+    public class Inventory<T> where T : Entity
     {
         private readonly int MAX_ITEMS = 4;
-        public LinkedList<Entity> _Items;
+        public LinkedList<T> _Items;
         public Inventory()
         {
-            _Items = new LinkedList<Entity>();
+            _Items = new LinkedList<T>();
         }
 
-        public Inventory(LinkedList<Entity> Items)
+        public Inventory(LinkedList<T> Items)
         {
             _Items = Items;
         }
@@ -19,16 +21,16 @@ namespace adventure_cli._models.entities.characters.attributes
         public override string ToString()
         {
             string toRtn = "\n---INVENTORY---\n";
-            foreach(Entity item in _Items)
+            foreach(T item in _Items)
             {
                 toRtn += $"{item._name} \n";
             }
             return toRtn;
         }
 
-        public Entity GetItem(Entity item)
+        public Entity GetItem(T item)
         {
-            LinkedListNode<Entity> item_node = _Items.Find(item);
+            LinkedListNode<T> item_node = _Items.Find(item);
             if(_Items.Count == 0 || item_node == null) return null;
             
             Entity entityToReturn = item_node.Value;
@@ -36,19 +38,38 @@ namespace adventure_cli._models.entities.characters.attributes
             return entityToReturn;
         }
 
+        public bool IsFull()
+        {
+            return _Items.Count == MAX_ITEMS;
+        }
 
-        public bool Insert(Entity item) 
+        public T FindItemByName(string name)
+        {
+            var itemToFind = name.ToLower().Trim();
+            foreach(var item in _Items)
+            {
+                var currentItem = item._name.ToLower().Trim();
+                if (currentItem == itemToFind)
+                {
+                    return item;
+                }
+            }
+
+            return null;
+        }
+
+        public bool Insert(T item) 
         {
             if (_Items.Count >= MAX_ITEMS) return false;
 
-            _Items.AddLast(new LinkedListNode<Entity>(item));
+            _Items.AddLast(new LinkedListNode<T>(item));
 
             return true;
         }
 
-        public bool Remove(Entity item)
+        public bool Remove(T item)
         {
-            LinkedListNode<Entity> found = _Items.Find(item);
+            LinkedListNode<T> found = _Items.Find(item);
 
             if (_Items.Count == 0 || found == null) return false;
 

@@ -4,6 +4,8 @@ using adventure_cli._models.characterData;
 using adventure_cli._models.entities.characters;
 using adventure_cli._models.entities.characters.attributes;
 using adventure_cli._models.entities.characters.attributes.stat_types;
+using adventure_cli._models.entities.items;
+using adventure_cli._models.entities.items.equipable;
 using adventure_cli._models.player.attributes;
 
 namespace adventure_cli.Helpers
@@ -18,8 +20,8 @@ namespace adventure_cli.Helpers
             skills.Add("Intelligence", new Strength(data.Intelligence));
 
             Stats stats = new Stats(data.Max_HP, data.XP, data.Gold, data.Level, skills);
-
-            return (T) Activator.CreateInstance(typeof(T), data.Id, data.Name, data.Type, stats, new Inventory());
+            // TODO: Pull Inventory and Equipment data from CharacterData
+            return (T) Activator.CreateInstance(typeof(T), data.Id, data.Name, data.Type, stats, new Inventory<Item>(), new Inventory<Equipable>());
         }
     }
 }
