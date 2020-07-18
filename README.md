@@ -13,7 +13,7 @@ and even basic necessities (e.g. dumping out the available commands, checking st
 
 - [ ] Users are prompted with, at most, 5 different choices that are prepended with numbers. These choices depend on the type of room that the user is in. For instance, if the user is prompted with two  different paths, then the user will be prompted with 2 different choices on their screen (e.g. 1.) Go Left 2.) Go Right). Below are some static pre-made choices the user could make
   - [ ] Combat Choices:
-    - [ ] 1. Attack with <Weapon/Fists>
+    - [ ] 1. Attack
     - [ ] 2. Dodge/Defend
     - [ ] 3. Spells
     - [ ] 4. Inventory
@@ -33,11 +33,11 @@ and even basic necessities (e.g. dumping out the available commands, checking st
     - [ ] Dexterity
     - [ ] Intelligence
  - [ ] Users also have access to general commands such as:
-   - [ ] save
-   - [ ] exit
-   - [ ] inventory
-   - [ ] stats
-   - [ ] use < item >
+   - [x] save
+   - [x] exit
+   - [x] inventory
+   - [x] stats
+   - [x] use < item >
 # \_Models
 
 ### DecisionNode : INode
