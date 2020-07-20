@@ -13,13 +13,13 @@ namespace adventure_cli._data
 
         public override async Task<IEnumerable<object>> FetchAll()
         {
-            var characters = await _context.Character_Tbl.ToListAsync();
+            var characters = await _context.Character_Tbl.Include(c => c.Equipment).Include(c => c.Inventory).ToListAsync();
             return characters;
         }
 
         public override async Task<object> FetchOne(int id)
         {
-            var character = await _context.Character_Tbl.FirstOrDefaultAsync(c => c.Id == id);
+            var character = await _context.Character_Tbl.Include(c => c.Equipment).Include(c => c.Inventory).FirstOrDefaultAsync(c => c.Id == id);
             return character;
         }
         public override async Task<int> GetCount()

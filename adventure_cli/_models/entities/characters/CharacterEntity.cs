@@ -13,7 +13,7 @@ namespace adventure_cli._models.entities.characters
         public int _level { get; set; }
         public Stats _stats { get; set; }
         public Inventory<Item> _inventory { get; set; }
-        public Inventory<Equipable> _equipped { get; set; } // Equ
+        public Inventory<Equipable> _equipped { get; set; }
 
         public CharacterEntity(int Id, string name, string type, Stats stats, Inventory<Item> inventory, Inventory<Equipable> equipped) : base(Id, name)
         {

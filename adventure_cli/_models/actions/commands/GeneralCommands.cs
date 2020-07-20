@@ -38,6 +38,7 @@ namespace adventure_cli._models.actions.commands
                 case "use":
                     {
                         var item = GetItemInInventory(keyParts, player);
+                        if (item == null) return;
                         item.Use(player);
                         break;
                     }
@@ -60,18 +61,32 @@ namespace adventure_cli._models.actions.commands
             {
                 itemName += keyParts[i] + " ";
             }
-            return player._inventory.FindItemByName(itemName);
+            var itemInInventory = player._inventory.FindItemByName(itemName);
+            if (itemInInventory == null)
+            {
+                Console.WriteLine($"{itemName} could not be found!");
+                return null;
+            }
+            return itemInInventory;
         }
 
         private static void RemoveItemInEquipment(string[] keyParts, PlayerEntity player)
         {
             string itemName = "";
-            for(int i = 1; i < keyParts.Length; i++)
+            for (int i = 1; i < keyParts.Length; i++)
             {
                 itemName += keyParts[i] + " ";
             }
             var equippedItem = player._equipped.FindItemByName(itemName);
-            player._equipped.Remove(player._equipped.FindItemByName(itemName));
+
+            if (equippedItem == null)
+            {
+                Console.WriteLine($"{itemName} could not be found!");
+                return;
+            }
+
+            Console.WriteLine($"{equippedItem._name} unequipped, and added to inventory.");
+            player._equipped.Remove(equippedItem);
             player._inventory.Insert(equippedItem);
         }
         private static void Exit()

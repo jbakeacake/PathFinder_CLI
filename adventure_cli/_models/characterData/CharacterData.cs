@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using adventure_cli._models.entities.items;
 
 namespace adventure_cli._models.characterData
 {
@@ -15,5 +16,7 @@ namespace adventure_cli._models.characterData
         public int Strength { get; set; }
         public int Dexterity { get; set; }
         public int Intelligence { get; set; }
+        public ICollection<EquipmentData> Equipment { get; set; }
+        public ICollection<ItemData> Inventory { get; set; }
     }
 }

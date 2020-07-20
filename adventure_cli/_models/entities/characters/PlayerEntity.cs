@@ -2,6 +2,8 @@ using System;
 using adventure_cli._models.entities.characters.attributes;
 using adventure_cli._models.entities.items;
 using adventure_cli._models.entities.items.equipable;
+using adventure_cli._models.entities.items.equipable.armor;
+using adventure_cli._models.entities.items.equipable.weapon;
 using adventure_cli._models.player.attributes;
 
 namespace adventure_cli._models.entities.characters
@@ -58,7 +60,7 @@ namespace adventure_cli._models.entities.characters
         // Determine whether or not this character has dodged an incoming attack. This is calculated by measuring
         // both the attacking and defending entity's speed. If one speed is higher, then that entity has a percentage
         // chance to dodge it; if one speed is lower than or equal, the entity being damage will 100% take the damage.
-        public bool isHitDodged(CharacterEntity other)
+        public bool isHitDodged(ICombatEntity other)
         {
             // Before any damage is actually done, we have to determine whether the attack hits or not. This is dependent on both the player and the other's
             // speed. If each speed is on par with each other, the attack will hit no matter what; If one speed is higher, the entity with the higher
@@ -67,7 +69,7 @@ namespace adventure_cli._models.entities.characters
 
             // First calculate the dodge chance of this entity:
             Random rand = new Random();
-            int chanceToDodge = this._stats._speed - other._stats._speed;
+            int chanceToDodge = this._stats._speed - other.GetStats()._speed;
             if (chanceToDodge <= 0)
             {
                 return false;
@@ -87,6 +89,43 @@ namespace adventure_cli._models.entities.characters
                     return true;
                 }
             }
+        }
+
+        public void AttackOther(ICombatEntity other, Weapon weapon)
+        {
+            if (other.isHitDodged(this)) // Check if the other can dodge an attack from THIS entity
+            {
+                Console.WriteLine($"{other.GetName()} dodged the attack!");
+            }
+            else
+            {
+                // Total Damage is made up of two sources: the Player's strength, and the weapon being used
+                Random rand = new Random();
+                int damageFromWeapon = rand.Next(weapon._minDamage, weapon._maxDamage + 1); // '+ 1' since rand.Next(...) has an exclusive maximum
+                int totalDamage = _stats._skills["Strength"]._value + damageFromWeapon;
+                weapon._currentDurability--;
+                other.TakeDamage(totalDamage);
+                
+                Console.WriteLine($"{other.GetName()} took {totalDamage} points of damage! ({other.GetName()} HP: {other.GetStats()._HP} / {other.GetStats()._maxHP})");
+            }
+        }
+
+        public Stats GetStats()
+        {
+            return _stats;
+        }
+
+        public string GetName()
+        {
+            return _name;
+        }
+
+        public void Defend(Armor armor)
+        {
+            _tempStats._armorClass += armor._armorRating;
+            armor._currentDurability--;
+
+            Console.WriteLine($"You focus on defense. Your AC raises to {_tempStats._armorClass}.");
         }
     }
 }

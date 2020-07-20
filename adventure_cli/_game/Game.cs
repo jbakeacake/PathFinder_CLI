@@ -72,7 +72,7 @@ namespace adventure_cli._game
             _potionController = new PotionController(potionRepository, _mapper);
             _weaponController = new WeaponController(weaponRepository, _mapper);
             _armorController = new ArmorController(armorRepository, _mapper);
-            _characterController = new CharacterController(characterRepository, _mapper);
+            _characterController = new CharacterController(characterRepository, _mapper, _armorController, _potionController, _weaponController);
         }
 
         public void ConfigureMapper()

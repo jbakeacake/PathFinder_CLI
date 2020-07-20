@@ -1,15 +1,39 @@
 [
-    {
-        "Id": 999,
-        "name": "Django",
-        "type": "Player",
-        "Max_HP": "10",
-        "HP": "10",
-        "XP": 0,
-        "Gold": 100,
-        "Level": 0,
-        "Strength": 3,
-        "Dexterity": 2,
-        "Intelligence": 1
-    }
+  {
+    "Id": 999,
+    "name": "Django",
+    "type": "Player",
+    "Max_HP": "10",
+    "HP": "10",
+    "XP": 0,
+    "Gold": 100,
+    "Level": 0,
+    "Strength": 3,
+    "Dexterity": 2,
+    "Intelligence": 1,
+    "Inventory": [
+      {
+        "ItemType": "WEAPON",
+        "ItemId": 1,
+        "CharacterId": 999
+      },
+      {
+        "ItemType": "ARMOR",
+        "ItemId": 1,
+        "CharacterId": 999
+      },
+      {
+        "ItemType": "POTION",
+        "ItemId": 1,
+        "CharacterId": 999
+      }
+    ],
+    "Equipment": [
+      {
+        "ItemType": "WEAPON",
+        "ItemId": 1,
+        "CharacterId": 999
+      }
+    ]
+  }
 ]

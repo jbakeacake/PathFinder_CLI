@@ -3,8 +3,9 @@ namespace adventure_cli._models.entities.items.equipable.armor
     public class Armor : Equipable
     {
         public int _armorRating { get; set; } // Base AC Rating
-        public Armor(int Id, string name, int goldValue, int maxDurability) : base(Id, name, goldValue, maxDurability)
+        public Armor(int Id, string name, int goldValue, int armorRating, int maxDurability) : base(Id, name, goldValue, maxDurability)
         {
+            _armorRating = armorRating;
         }
 
         public override string ToString()

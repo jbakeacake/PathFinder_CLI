@@ -10,32 +10,30 @@
     "Level": 0,
     "Strength": 2,
     "Dexterity": 2,
-    "Intelligence": 2
-  },
-  {
-    "Id": 2,
-    "Name": "Enemy 2",
-    "Type": "Enemy",
-    "Max_HP": "10",
-    "HP": "10",
-    "XP": 20,
-    "Gold": 10,
-    "Level": 0,
-    "Strength": 2,
-    "Dexterity": 2,
-    "Intelligence": 2
-  },
-  {
-    "Id": 3,
-    "Name": "Enemy 3",
-    "Type": "Enemy",
-    "Max_HP": "10",
-    "HP": "10",
-    "XP": 20,
-    "Gold": 20,
-    "Level": 0,
-    "Strength": 2,
-    "Dexterity": 2,
-    "Intelligence": 2
+    "Intelligence": 2,
+    "Inventory": [
+      {
+        "ItemType": "WEAPON",
+        "ItemId": 1,
+        "CharacterId": 1
+      },
+      {
+        "ItemType": "ARMOR",
+        "ItemId": 1,
+        "CharacterId": 1
+      },
+      {
+        "ItemType": "POTION",
+        "ItemId": 1,
+        "CharacterId": 1
+      }
+    ],
+    "Equipment": [
+      {
+        "ItemType": "WEAPON",
+        "ItemId": 1,
+        "CharacterId": 1
+      }
+    ]
   }
 ]
