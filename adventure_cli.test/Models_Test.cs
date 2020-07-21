@@ -10,6 +10,8 @@ using Xunit.Abstractions;
 using adventure_cli._models.entities.items.equipable.weapon;
 using adventure_cli._models.entities.items.equipable.armor;
 using adventure_cli._models.entities;
+using adventure_cli._models.entities.items;
+using adventure_cli._models.entities.items.equipable;
 
 namespace adventure_cli.test
 {
@@ -22,16 +24,17 @@ namespace adventure_cli.test
         {
             _output = output;
 
-            Inventory inv = new Inventory();
+            Inventory<Item> inv = new Inventory<Item>(8, "INVENTORY");
+            Inventory<Equipable> equipment = new Inventory<Equipable>(4, "EQUIPMENT");
 
             Dictionary<string, Stat> skills = new Dictionary<string, Stat>();
-            skills.Add("Strength", new Strength(2));
-            skills.Add("Dexterity", new Dexterity(2));
+            skills.Add("Strength", new Strength(5));
+            skills.Add("Dexterity", new Dexterity(3));
             skills.Add("Intelligence", new Intelligence(2));
 
             Stats stats = new Stats(maxHP: 10, XP: 0, gold: 100,level: 0, skills);
 
-            _player = new PlayerEntity(999, "DJANGO", "Player", stats, inv);
+            _player = new PlayerEntity(999, "DJANGO", "Player", stats, inv, equipment);
         }
 
         [Fact]
@@ -76,12 +79,9 @@ namespace adventure_cli.test
         [Fact]
         public void Inventory_Insert()
         {
-            Assert.True(_player._inventory.Insert(new Potion(1, "Lesser Healing Potion", 100, 5)));
-            Assert.True(_player._inventory.Insert(new Weapon(1, "Iron Longsword", 150, 5, 2, 4)));
-            Assert.True(_player._inventory.Insert(new Armor(1, "Leather Armor", 120, 5)));
-
-            _output.WriteLine("Printing Inventory...");
-            _output.WriteLine(_player._inventory.ToString());
+            Assert.True(_player._inventory.Insert(new Potion(1, "Potion", 100, 5)));
+            Assert.True(_player._inventory.Insert(new Weapon(1, "Longsword", 150, 5, 2, 4)));
+            Assert.True(_player._inventory.Insert(new Armor(1, "Leather Buckler", 120, 2, 5)));
         }
 
         [Fact]
@@ -95,17 +95,17 @@ namespace adventure_cli.test
             //With that assumption and process in mind, we should be able to get a handle on the Entity item that's in the user's inventory. So, we should be able
             //to search for the node containing that Entity, then remove that linked list node from the user's inventory.
             //
-            Entity weapon = new Weapon(1, "Iron Longsword", 150, 5, 2, 4);
+            Item weapon = new Weapon(1, "Iron Longsword", 150, 5, 2, 4);
 
             Assert.True(_player._inventory.Insert(new Potion(1, "Lesser Healing Potion", 100, 5)));
             Assert.True(_player._inventory.Insert(weapon));
-            Assert.True(_player._inventory.Insert(new Armor(1, "Leather Armor", 120, 5)));
+            Assert.True(_player._inventory.Insert(new Armor(1, "Leather Buckler", 120, 2, 5)));
 
             _output.WriteLine("\nPrinting Inventory before removal...");
             _output.WriteLine(_player._inventory.ToString());
 
             Assert.True(_player._inventory.Remove(weapon));
-            Assert.False(_player._inventory.Remove(new Potion(1, "Lesser Healing Potion", 100, 5))); // Should return null on "Find(...)" call
+            Assert.False(_player._inventory.Remove(new Potion(1, "Potion", 100, 10))); // Should return null on "Find(...)" call
 
             _output.WriteLine("Printing Inventory after removal...");
             _output.WriteLine(_player._inventory.ToString());
@@ -114,11 +114,38 @@ namespace adventure_cli.test
         [Fact]
         public void Inventory_GetItem()
         {
-            Entity weapon = new Weapon(1, "Iron Longsword", 150, 5, 2, 4);
+            Item weapon = new Weapon(1, "Iron Longsword", 150, 5, 2, 4);
             Assert.True(_player._inventory.Insert(weapon));
 
             Assert.True(_player._inventory.GetItem(weapon) == weapon);
-            Assert.False(_player._inventory.GetItem(weapon) == new Weapon(1, "Iron Longsword", 150, 5, 2, 4));
+        }
+
+        [Fact]
+        public void Stats_Modifiers()
+        {
+            // For reference, the stats + modifiers are:
+            // {
+            //     Strength : 5 -> modifier of 3
+            //     Dexterity : 3 -> modifier of 2
+            //     Intelligence : 2 -> modifier of 1
+            // }
+            Assert.True(_player._stats._skills["Strength"].GetModifier() == 3);
+            Assert.True(_player._stats._speed == 2);
+            Assert.True(_player._stats._spellSlots == 1);
+        }
+
+        [Fact]
+        public void Weapon_Tests()
+        {
+            Weapon weapon = new Weapon(1, "Longsword", 100, 3, 3, 3);
+            Assert.True(weapon.GetDamage() == 3);
+            weapon.DecreaseDurability();
+            weapon.DecreaseDurability();
+            weapon.DecreaseDurability();
+            Assert.True(weapon._currentDurability == 0);
+            Assert.True(weapon._goldValue == 0);
+            Assert.True(weapon._maxDurability == 3);
+            Assert.True(weapon.GetDamage() == 0);
         }
     }
 }

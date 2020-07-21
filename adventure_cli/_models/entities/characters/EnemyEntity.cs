@@ -84,10 +84,15 @@ namespace adventure_cli._models.entities.characters
                 // Total Damage is made up of two sources: the Player's strength, and the weapon being used
                 Random rand = new Random();
                 int damageFromWeapon = rand.Next(weapon._minDamage, weapon._maxDamage + 1); // '+ 1' since rand.Next(...) has an exclusive maximum
-                int totalDamage = _stats._skills["Strength"]._value + damageFromWeapon;
+                int totalDamage = _stats._skills["Strength"]._value + damageFromWeapon - other.GetStats()._armorClass;
+                if (totalDamage < 0)
+                {
+                    totalDamage = 0;
+                }
                 weapon._currentDurability--;
-                Console.WriteLine($"{other.GetName()} took {totalDamage} points of damage!");
                 other.TakeDamage(totalDamage);
+                
+                Console.WriteLine($"{other.GetName()} took {totalDamage} points of damage! ({other.GetName()} HP: {other.GetStats()._HP} / {other.GetStats()._maxHP})");
             }
         }
         public Stats GetStats()

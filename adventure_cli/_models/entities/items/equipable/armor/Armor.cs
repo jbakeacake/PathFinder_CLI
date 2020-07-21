@@ -8,6 +8,11 @@ namespace adventure_cli._models.entities.items.equipable.armor
             _armorRating = armorRating;
         }
 
+        public int GetArmorRating()
+        {
+            return _armorRating;
+        }
+
         public override string ToString()
         {
             return $"> {_name} | {_goldValue}gp | DEF: {_armorRating} | Durability: {_currentDurability} / {_maxDurability}";

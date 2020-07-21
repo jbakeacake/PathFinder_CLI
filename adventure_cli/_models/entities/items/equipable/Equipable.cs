@@ -10,7 +10,7 @@ namespace adventure_cli._models.entities.items.equipable
         public Equipable(int Id, string name, int goldValue, int maxDurability) : base(Id, name, goldValue)
         {
             _maxDurability = maxDurability;
-            _currentDurability = _currentDurability;
+            _currentDurability = _maxDurability;
         }
 
         public override void Use(PlayerEntity player)
@@ -26,14 +26,23 @@ namespace adventure_cli._models.entities.items.equipable
                 player._inventory.Remove(this);
             }
         }
+
+        public bool isBroken()
+        {
+            return _currentDurability <= 0 ? true : false;
+        }
         public void DecreaseDurability()
         {
             _currentDurability -= 1;
+            if (_currentDurability <= 0)
+                NullifyValue();
         }
         public void FullRepair()
         {
             _currentDurability = _maxDurability;
         }
+
+
 
         /**
         NullifyValue(void) -> void

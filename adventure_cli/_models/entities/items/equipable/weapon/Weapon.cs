@@ -1,3 +1,4 @@
+using System;
 using adventure_cli._models.entities.characters;
 
 namespace adventure_cli._models.entities.items.equipable.weapon
@@ -11,6 +12,14 @@ namespace adventure_cli._models.entities.items.equipable.weapon
             _minDamage = minDamage;
             _maxDamage = maxDamage;
         }
+
+        public int GetDamage()
+        {
+            Random rand = new Random();
+            int rollForDamage = rand.Next(_minDamage, _maxDamage);
+            return rollForDamage;
+        }
+
         /**
         NullifyValue(void) -> void
 
@@ -21,6 +30,7 @@ namespace adventure_cli._models.entities.items.equipable.weapon
         public override void NullifyValue()
         {
             if (_currentDurability > 0) return;
+            Console.WriteLine($"{_name} is broken!");
             _goldValue = 0;
             _minDamage = 0;
             _maxDamage = 0;

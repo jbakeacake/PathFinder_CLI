@@ -34,7 +34,7 @@ namespace adventure_cli
             DataContext _context = new DataContext(); // TODO: use _context within a "using" statement to preserve memory
             //Seeding:
             Seed.SeedData(_context);
-            
+
             Game game = new Game(_context);
 
             var potion = await game.GetPotion(1);
@@ -43,7 +43,7 @@ namespace adventure_cli
             EnemyEntity enemy = await game.GetCharacter<EnemyEntity>(1);
             PlayerEntity player = await game.GetCharacter<PlayerEntity>(999);
 
-            GameState current = GameState.ADVENTURE;
+            GameState current = GameState.COMBAT;
             while (true)
             {
                 switch (current)
@@ -56,7 +56,12 @@ namespace adventure_cli
                         }
                     case GameState.COMBAT:
                         {
-                            CombatManager.BeginCombat(player,enemy);
+                            CombatManager.BeginCombat(player, enemy);
+                            if (CombatManager.isCombatOver())
+                            {
+                                CombatManager.BeginCombat(player, enemy); // Run the combat command one more time for looting messages and win messages
+                                current = GameState.ADVENTURE;
+                            }
                             break;
                         }
                     case GameState.SHOP:

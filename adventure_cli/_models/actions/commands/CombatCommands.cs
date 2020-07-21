@@ -9,7 +9,7 @@ namespace adventure_cli._models.actions.commands
 {
     public static class CombatCommands
     {
-        public static void doCommand(string command, PlayerEntity player, EnemyEntity enemy)
+        public static bool doCommand(string command, PlayerEntity player, EnemyEntity enemy)
         {
             command = command.ToLower();
             var keyParts = command.Split(' ');
@@ -19,35 +19,37 @@ namespace adventure_cli._models.actions.commands
                 case "attack":
                     {
                         var weapon = GetItemInEquipment(keyParts, player);
-                        if (weapon.GetType() != typeof(Weapon))
+                        if (weapon == null || weapon.GetType() != typeof(Weapon))
                         {
-                            Console.WriteLine($"You can't attack with a {weapon._name}");
+                            Console.WriteLine($"You can't attack with that!");
+                            return false;
                         }
                         else
                         {
                             Attack(player, enemy, (Weapon)weapon);
+                            return true;
                         }
-                        break;
                     }
                 case "defend":
                     {
                         var armor = GetItemInEquipment(keyParts, player);
-                        if (armor.GetType() != typeof(Armor))
+                        if (armor == null || armor.GetType() != typeof(Armor))
                         {
-                            Console.WriteLine($"You can't defend with a {armor._name}.  ");
+                            Console.WriteLine($"You can't defend with that!");
+                            return false;
                         }
                         else
                         {
                             Defend(player, (Armor)armor);
+                            return true;
                         }
-                        break;
                     }
                 case "use":
                     {
                         var item = GetItemInInventory(keyParts, player);
-                        if (item == null) return;
+                        if (item == null) return false;
                         item.Use(player);
-                        break;
+                        return true;
                     }
                 case "inventory":
                     {
@@ -61,9 +63,11 @@ namespace adventure_cli._models.actions.commands
                     }
                 default:
                     {
-                        break;
+                        Console.WriteLine("Please enter a valid command. Type 'help' for a list of valid commands.");
+                        return false;
                     }
             }
+            return false;
         }
 
         private static void Defend(PlayerEntity player, Armor armor)

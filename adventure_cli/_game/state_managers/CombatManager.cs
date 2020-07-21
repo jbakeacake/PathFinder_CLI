@@ -27,26 +27,49 @@ namespace adventure_cli._game.state_managers
                 case CombatState.PLAYER:
                     {
                         string cmd = Console.ReadLine();
-                        CombatCommands.doCommand(cmd, player, enemy);
+                        if (CombatCommands.doCommand(cmd, player, enemy)) 
+                            _state = CombatState.ENEMY;
+                        CheckWinCondition(player, enemy);
                         break;
                     }
                 case CombatState.ENEMY:
                     {
                         enemy.AttackOther(player, (Weapon) enemy._equipped._Items.First.Value);
+                        _state = CombatState.PLAYER;
+                        CheckWinCondition(player, enemy);
                         break;
                     }
                 case CombatState.WIN:
                     {
+                        Console.WriteLine("You Win!");
                         break;
                     }
                 case CombatState.LOSE:
                     {
+                        Console.WriteLine("You Died!");
                         break;
                     }
                 default:
                     {
                         break;
                     }
+            }
+        }
+
+        public static bool isCombatOver()
+        {
+            return _state == CombatState.LOSE || _state == CombatState.WIN ? true : false;
+        }
+
+        private static void CheckWinCondition(PlayerEntity player, EnemyEntity enemy)
+        {
+            if (player.isDead())
+            {
+                _state = CombatState.LOSE;
+            }
+            else if (enemy.isDead())
+            {
+                _state = CombatState.WIN;
             }
         }
     }

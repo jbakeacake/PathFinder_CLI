@@ -28,7 +28,13 @@ namespace adventure_cli._models.entities.characters.attributes.stat_types
         */
         public int GetModifier()
         {
-            if (_value == 0) return 0;
+            if (_value == 0)
+            {
+                return 0;
+            } else if (_value >= 9)
+            {
+                return 5; // Hard Cap for modifiers after 9 points are put into this stat
+            }
             int modifier;
 
             if (_value % 2 == 1)
