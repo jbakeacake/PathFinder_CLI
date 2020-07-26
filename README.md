@@ -33,4 +33,4 @@ and even basic necessities (e.g. dumping out the available commands, checking st
   - [ ] heal : refills the user's health
 
 
-Documentation is being drafted at the moment. Check it out later for any updates!
+**Documentation is being drafted at the moment. Check it out later for any updates!**
