@@ -1,0 +1,106 @@
+[
+  {
+    "Id": 500,
+    "name": "Khajit",
+    "type": "Shopkeep",
+    "Max_HP": 999,
+    "HP": 999,
+    "XP": 0,
+    "Gold": 999,
+    "Level": 0,
+    "Strength": 1,
+    "Dexterity": 1,
+    "Intelligence": 1,
+    "Inventory": [
+      {
+        "ItemType": "WEAPON",
+        "ItemId": 1,
+        "CharacterId": 999
+      },
+      {
+        "ItemType": "ARMOR",
+        "ItemId": 1,
+        "CharacterId": 999
+      },
+      {
+        "ItemType": "POTION",
+        "ItemId": 1,
+        "CharacterId": 999
+      },
+      {
+        "ItemType": "WEAPON",
+        "ItemId": 2,
+        "CharacterId": 999
+      },
+      {
+        "ItemType": "ARMOR",
+        "ItemId": 2,
+        "CharacterId": 999
+      },
+      {
+        "ItemType": "POTION",
+        "ItemId": 2,
+        "CharacterId": 999
+      },
+      {
+        "ItemType": "WEAPON",
+        "ItemId": 3,
+        "CharacterId": 999
+      },
+      {
+        "ItemType": "ARMOR",
+        "ItemId": 3,
+        "CharacterId": 999
+      },
+      {
+        "ItemType": "POTION",
+        "ItemId": 3,
+        "CharacterId": 999
+      }
+    ],
+    "Equipment": [
+      {
+        "ItemType": "WEAPON",
+        "ItemId": 1,
+        "CharacterId": 999
+      }
+    ]
+  },
+  {
+    "Id": 999,
+    "name": "Django",
+    "type": "Player",
+    "Max_HP": "10",
+    "HP": "10",
+    "XP": 0,
+    "Gold": 100,
+    "Level": 0,
+    "Strength": 3,
+    "Dexterity": 2,
+    "Intelligence": 1,
+    "Inventory": [
+      {
+        "ItemType": "WEAPON",
+        "ItemId": 1,
+        "CharacterId": 999
+      },
+      {
+        "ItemType": "ARMOR",
+        "ItemId": 1,
+        "CharacterId": 999
+      },
+      {
+        "ItemType": "POTION",
+        "ItemId": 1,
+        "CharacterId": 999
+      }
+    ],
+    "Equipment": [
+      {
+        "ItemType": "WEAPON",
+        "ItemId": 1,
+        "CharacterId": 999
+      }
+    ]
+  }
+]

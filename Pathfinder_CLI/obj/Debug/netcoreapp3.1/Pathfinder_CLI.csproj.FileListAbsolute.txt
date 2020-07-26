@@ -1,0 +1,11 @@
+c:\Users\Jacob Baker\Desktop\Pathfinder_Rewrite\Pathfinder_CLI\bin\Debug\netcoreapp3.1\Pathfinder_CLI.exe
+c:\Users\Jacob Baker\Desktop\Pathfinder_Rewrite\Pathfinder_CLI\bin\Debug\netcoreapp3.1\Pathfinder_CLI.deps.json
+c:\Users\Jacob Baker\Desktop\Pathfinder_Rewrite\Pathfinder_CLI\bin\Debug\netcoreapp3.1\Pathfinder_CLI.runtimeconfig.json
+c:\Users\Jacob Baker\Desktop\Pathfinder_Rewrite\Pathfinder_CLI\bin\Debug\netcoreapp3.1\Pathfinder_CLI.runtimeconfig.dev.json
+c:\Users\Jacob Baker\Desktop\Pathfinder_Rewrite\Pathfinder_CLI\bin\Debug\netcoreapp3.1\Pathfinder_CLI.dll
+c:\Users\Jacob Baker\Desktop\Pathfinder_Rewrite\Pathfinder_CLI\bin\Debug\netcoreapp3.1\Pathfinder_CLI.pdb
+c:\Users\Jacob Baker\Desktop\Pathfinder_Rewrite\Pathfinder_CLI\obj\Debug\netcoreapp3.1\Pathfinder_CLI.csprojAssemblyReference.cache
+c:\Users\Jacob Baker\Desktop\Pathfinder_Rewrite\Pathfinder_CLI\obj\Debug\netcoreapp3.1\Pathfinder_CLI.AssemblyInfoInputs.cache
+c:\Users\Jacob Baker\Desktop\Pathfinder_Rewrite\Pathfinder_CLI\obj\Debug\netcoreapp3.1\Pathfinder_CLI.AssemblyInfo.cs
+c:\Users\Jacob Baker\Desktop\Pathfinder_Rewrite\Pathfinder_CLI\obj\Debug\netcoreapp3.1\Pathfinder_CLI.dll
+c:\Users\Jacob Baker\Desktop\Pathfinder_Rewrite\Pathfinder_CLI\obj\Debug\netcoreapp3.1\Pathfinder_CLI.pdb
