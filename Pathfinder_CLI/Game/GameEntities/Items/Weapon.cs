@@ -1,4 +1,5 @@
 using System;
+using Pathfinder_CLI.Game.GameEntities.Characters.Interfaces;
 
 namespace Pathfinder_CLI.Game.GameEntities.Items
 {

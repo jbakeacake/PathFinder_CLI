@@ -14,7 +14,7 @@ namespace Pathfinder_CLI.Game.GameEntities.Items
 
         public int GetArmorRating()
         {
-            if(isBroken())
+            if (isBroken())
             {
                 Console.WriteLine($"{_name} is broken!");
                 return 0;

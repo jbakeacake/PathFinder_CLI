@@ -1,16 +1,15 @@
 using System;
+using Pathfinder_CLI.Game.GameEntities.Characters;
 using Pathfinder_CLI.Game.GameEntities.Characters.Interfaces;
 using Pathfinder_CLI.Game.GameEntities.Items.Interfaces;
 
 namespace Pathfinder_CLI.Game.GameEntities.Items
 {
-    public abstract class Equipable : IEquipable, IInventoryItem
+    public abstract class Equipable : Item, IEquipable
     {
-        public string _name { get; set; }
-        public int _goldValue { get; set; }
         public int _currentDurability { get; set; }
         public int _maxDurability { get; set; }
-        public Equipable(string name, int goldValue, int currentDurability, int maxDurability)
+        public Equipable(string name, int goldValue, int currentDurability, int maxDurability) : base(name, goldValue)
         {
             _name = name;
             _goldValue = goldValue;
@@ -19,12 +18,13 @@ namespace Pathfinder_CLI.Game.GameEntities.Items
         }
         public void DecreaseDurability(int points)
         {
-            _currentDurability -= points;
             if (isBroken())
             {
                 Console.WriteLine($"{_name} is broken! Repair it at a shop with the command 'repair <itemName>'.");
                 NullifyValue();
+                return;
             }
+            _currentDurability -= points;
         }
 
         public void FullRepair()
@@ -37,22 +37,18 @@ namespace Pathfinder_CLI.Game.GameEntities.Items
         {
             return _currentDurability <= 0 ? true : false;
         }
-        public string GetName()
-        {
-            return _name;
-        }
+
 
         // Use(character : ICharacterEntity)
         // Using an item will simply equip the item for the character.
-        public void Use(ICharacterEntity character)
+        public override void Use(CharacterEntity character)
         {
-            if (character.GetEquipment().Insert(this))
+            if (character._equipment.Insert(this))
             {
                 Console.WriteLine($"{_name} equipped! Slots {character.GetEquipment()._items.Count} / {character.GetEquipment()._maxSlots} are being used.");
-                character.GetInventory().Remove(this);
+                character.RemoveItemFrom(character.GetInventory(), _name);
             }
         }
-
         public abstract void NullifyValue();
     }
 }

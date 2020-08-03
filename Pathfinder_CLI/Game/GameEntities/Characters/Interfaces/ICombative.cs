@@ -1,18 +1,20 @@
+using Pathfinder_CLI.Game.GameEntities.Common.ItemContainers;
 using Pathfinder_CLI.Game.GameEntities.Common.Stats;
+using Pathfinder_CLI.Game.GameEntities.Items;
 using Pathfinder_CLI.Game.GameEntities.Items.Interfaces;
 using Pathfinder_CLI.Game.GameEntities.Items.Spells.Types;
 
 namespace Pathfinder_CLI.Game.GameEntities.Characters.Interfaces
 {
-    public interface ICombatEntity
+    public interface ICombative
     {
-        void CombatAction(ICombatEntity defender, IEquipable equippedItem);
+        void CombatAction(ICombative other, Equipable equippedItem);
+        Stats GetCombatStats();
+        void UpdateCharacterStats(); 
         void TakeDamage(int damage);
-        void dodgeAttack(ICombatEntity attacker); // 'this' would be the defender
+        void ConsumePotion(Potion potion);
         void receiveDebuff(DebuffSpell debuff);
-        Stats GetStats();
-        string GetName();
         bool isDead();
-
+        string GetName();
     }
 }

@@ -1,28 +1,27 @@
+using System;
 using Pathfinder_CLI.Game.GameEntities.Characters;
 using Pathfinder_CLI.Game.GameEntities.Characters.Interfaces;
 using Pathfinder_CLI.Game.GameEntities.Items.Interfaces;
 
 namespace Pathfinder_CLI.Game.GameEntities.Items
 {
-    public class Potion : IInventoryItem, IConsumable
+    public class Potion : Item, IConsumable
     {
         public int _healValue { get; set; }
-
-
-
-        public void Consume(PlayerEntity player)
+        public Potion(string name, int goldValue, int healValue) : base(name, goldValue)
         {
-            throw new System.NotImplementedException();
+            _healValue = healValue;
         }
 
-        public string GetName()
+        public override void Use(CharacterEntity character)
         {
-            throw new System.NotImplementedException();
+            UseConsumable((ICombative)character);
+            Console.WriteLine($"{_name} consumed. Healed for {_healValue}");
         }
 
-        public void Use(ICharacterEntity character)
+        public void UseConsumable(ICombative character)
         {
-            throw new System.NotImplementedException();
+            character.ConsumePotion(this);
         }
     }
 }

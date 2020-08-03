@@ -1,3 +1,5 @@
+using System;
+using Pathfinder_CLI.Game.GameEntities.Characters.Interfaces;
 using Pathfinder_CLI.Game.GameEntities.Items.Interfaces;
 
 namespace Pathfinder_CLI.Game.GameEntities.Items.Spells
@@ -7,6 +9,7 @@ namespace Pathfinder_CLI.Game.GameEntities.Items.Spells
         public SpellScroll(string name, int goldValue, int currentDurability, int maxDurability) : base(name, goldValue, currentDurability, maxDurability)
         {
         }
+
 
         public override void NullifyValue()
         {

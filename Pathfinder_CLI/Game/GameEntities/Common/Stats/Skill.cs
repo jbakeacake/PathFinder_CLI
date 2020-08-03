@@ -2,7 +2,7 @@ using Pathfinder_CLI.Game.GameEntities.Common.Interfaces;
 
 namespace Pathfinder_CLI.Game.GameEntities.Common.Stats
 {
-    public abstract class Skill : ISkill
+    public class Skill : ISkill
     {
         public string _name { get; set; }
         public int _value { get; set; }

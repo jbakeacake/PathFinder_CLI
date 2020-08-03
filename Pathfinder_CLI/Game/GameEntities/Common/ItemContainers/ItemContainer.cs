@@ -5,18 +5,33 @@ using Pathfinder_CLI.Game.GameEntities.Items.Interfaces;
 
 namespace Pathfinder_CLI.Game.GameEntities.Common.ItemContainers
 {
-    public abstract class ItemContainer : IItemContainer
+    public class ItemContainer : IItemContainer
     {
         public int _maxSlots { get; set; }
+        public string _name { get; set; }
         public Dictionary<string, IInventoryItem> _items;
-        public ItemContainer(int maxSlots)
+        public ItemContainer(int maxSlots, string name)
         {
             _maxSlots = maxSlots;
+            _name = name;
+            _items = new Dictionary<string, IInventoryItem>();
         }
-        public ItemContainer(int maxSlots, IInventoryItem[] items)
+        public ItemContainer(int maxSlots, string name, IInventoryItem[] items)
         {
             _maxSlots = maxSlots;
+            _items = new Dictionary<string, IInventoryItem>();
             InsertArray(items);
+            _name = name;
+        }
+
+        public override string ToString()
+        {
+            string toRtn = "";
+            foreach (var item in _items)
+            {
+                toRtn += $"> {item.Value.GetName()} \n";
+            }
+            return toRtn;
         }
 
         public IInventoryItem Find(string key)

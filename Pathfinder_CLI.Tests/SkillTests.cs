@@ -11,12 +11,12 @@ namespace Pathfinder_CLI.Tests
         public void BaseSkills_Test()
         {
             ISkill str, dex, intelli, str2, dex2, intelli2;
-            str = new Strength(1);
-            dex = new Dexterity(3);
-            intelli = new Intelligence(5);
-            str2 = new Strength(7);
-            dex2 = new Dexterity(9);
-            intelli2 = new Intelligence(1000); // big brain time
+            str = new Skill("s", 1);
+            dex = new Skill("d", 3);
+            intelli = new Skill("i", 5);
+            str2 = new Skill("s", 7);
+            dex2 = new Skill("d",9);
+            intelli2 = new Skill("i", 1000); // big brain time
             
             Assert.True(str.GetModifier() == 1);
             Assert.True(dex.GetModifier() == 2);

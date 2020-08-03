@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jacob Baker\\Desktop\\Pathfinder_Rewrite\\Pathfinder_CLI.Tests\\Pathfinder_CLI.Tests.csproj": {}
+    "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI.Tests\\Pathfinder_CLI.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jacob Baker\\Desktop\\Pathfinder_Rewrite\\Pathfinder_CLI.Tests\\Pathfinder_CLI.Tests.csproj": {
+    "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI.Tests\\Pathfinder_CLI.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jacob Baker\\Desktop\\Pathfinder_Rewrite\\Pathfinder_CLI.Tests\\Pathfinder_CLI.Tests.csproj",
+        "projectUniqueName": "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI.Tests\\Pathfinder_CLI.Tests.csproj",
         "projectName": "Pathfinder_CLI.Tests",
-        "projectPath": "C:\\Users\\Jacob Baker\\Desktop\\Pathfinder_Rewrite\\Pathfinder_CLI.Tests\\Pathfinder_CLI.Tests.csproj",
+        "projectPath": "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI.Tests\\Pathfinder_CLI.Tests.csproj",
         "packagesPath": "C:\\Users\\Jacob Baker\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jacob Baker\\Desktop\\Pathfinder_Rewrite\\Pathfinder_CLI.Tests\\obj\\",
+        "outputPath": "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -28,8 +28,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Jacob Baker\\Desktop\\Pathfinder_Rewrite\\Pathfinder_CLI\\Pathfinder_CLI.csproj": {
-                "projectPath": "C:\\Users\\Jacob Baker\\Desktop\\Pathfinder_Rewrite\\Pathfinder_CLI\\Pathfinder_CLI.csproj"
+              "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\Pathfinder_CLI.csproj": {
+                "projectPath": "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\Pathfinder_CLI.csproj"
               }
             }
           }
@@ -79,14 +79,14 @@
         }
       }
     },
-    "C:\\Users\\Jacob Baker\\Desktop\\Pathfinder_Rewrite\\Pathfinder_CLI\\Pathfinder_CLI.csproj": {
+    "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\Pathfinder_CLI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jacob Baker\\Desktop\\Pathfinder_Rewrite\\Pathfinder_CLI\\Pathfinder_CLI.csproj",
+        "projectUniqueName": "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\Pathfinder_CLI.csproj",
         "projectName": "Pathfinder_CLI",
-        "projectPath": "C:\\Users\\Jacob Baker\\Desktop\\Pathfinder_Rewrite\\Pathfinder_CLI\\Pathfinder_CLI.csproj",
+        "projectPath": "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\Pathfinder_CLI.csproj",
         "packagesPath": "C:\\Users\\Jacob Baker\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jacob Baker\\Desktop\\Pathfinder_Rewrite\\Pathfinder_CLI\\obj\\",
+        "outputPath": "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -113,6 +113,36 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
