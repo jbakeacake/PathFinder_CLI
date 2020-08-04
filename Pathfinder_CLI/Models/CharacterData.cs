@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using Pathfinder_CLI.Models.Interfaces;
 
 namespace Pathfinder_CLI.Models
 {
-    public class CharacterData
+    public class CharacterData : IData
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -17,5 +18,9 @@ namespace Pathfinder_CLI.Models
         public int Intelligence { get; set; }
         public ICollection<EquipmentData> Equipment { get; set; }
         public ICollection<ItemData> Inventory { get; set; }
+        public int GetId()
+        {
+            return Id;
+        }
     }
 }

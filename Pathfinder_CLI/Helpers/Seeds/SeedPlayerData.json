@@ -2,7 +2,7 @@
   {
     "Id": 500,
     "name": "Khajit",
-    "type": "Shopkeep",
+    "type": "NPC",
     "Max_HP": 999,
     "HP": 999,
     "XP": 0,
@@ -15,54 +15,54 @@
       {
         "ItemType": "WEAPON",
         "ItemId": 1,
-        "CharacterId": 999
+        "CharacterId": 500
       },
       {
         "ItemType": "ARMOR",
         "ItemId": 1,
-        "CharacterId": 999
+        "CharacterId": 500
       },
       {
         "ItemType": "POTION",
         "ItemId": 1,
-        "CharacterId": 999
+        "CharacterId": 500
       },
       {
         "ItemType": "WEAPON",
         "ItemId": 2,
-        "CharacterId": 999
+        "CharacterId": 500
       },
       {
         "ItemType": "ARMOR",
         "ItemId": 2,
-        "CharacterId": 999
+        "CharacterId": 500
       },
       {
         "ItemType": "POTION",
         "ItemId": 2,
-        "CharacterId": 999
+        "CharacterId": 500
       },
       {
         "ItemType": "WEAPON",
         "ItemId": 3,
-        "CharacterId": 999
+        "CharacterId": 500
       },
       {
         "ItemType": "ARMOR",
         "ItemId": 3,
-        "CharacterId": 999
+        "CharacterId": 500
       },
       {
         "ItemType": "POTION",
         "ItemId": 3,
-        "CharacterId": 999
+        "CharacterId": 500
       }
     ],
     "Equipment": [
       {
         "ItemType": "WEAPON",
         "ItemId": 1,
-        "CharacterId": 999
+        "CharacterId": 500
       }
     ]
   },

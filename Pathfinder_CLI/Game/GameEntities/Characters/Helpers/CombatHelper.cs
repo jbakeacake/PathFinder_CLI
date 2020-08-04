@@ -62,6 +62,7 @@ namespace Pathfinder_CLI.Game.GameEntities.Characters.Helpers
             {
                 var totalDamage = weapon.GetDamage() + _character.GetCombatStats().GetBaseDamage() - other.GetCombatStats().GetArmorClass();
                 other.TakeDamage(totalDamage);
+                Console.WriteLine($"{other.GetName()} took {totalDamage} points of damage!");
             }
             else
             {

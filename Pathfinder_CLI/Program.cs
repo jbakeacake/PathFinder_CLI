@@ -9,7 +9,9 @@ using Pathfinder_CLI.Controllers;
 using Pathfinder_CLI.Data;
 using Pathfinder_CLI.Game.GameEntities.Characters;
 using Pathfinder_CLI.Game.GameEntities.Items;
+using Pathfinder_CLI.Game.RoadMap.Contexts;
 using Pathfinder_CLI.Helpers;
+using Pathfinder_CLI.Services;
 
 namespace Pathfinder_CLI
 {
@@ -40,8 +42,16 @@ namespace Pathfinder_CLI
                     Console.Error.WriteLine(ex.ToString());
                 }
             }
-            Console.WriteLine("Tasks Completed");
-            await Task.CompletedTask;
+            PlayerEntity player = await services.GetRequiredService<CharacterController>().GetPlayer(999);
+            EnemyEntity enemy = await services.GetRequiredService<CharacterController>().GetEnemy(1);
+            Item[] rewards = new Item[] { new Weapon("Long Claw", 100, 10, 10, 4, 8)};
+            CombatContext combatContext = new CombatContext(player, enemy, "You face an enemy!", rewards, 50, 200);
+            services.GetRequiredService<CommandHandlingService>()
+                .Initialize(services)
+                .InitializeContext(combatContext)
+                .BuildCommands();
+            var input = Console.ReadLine();
+            services.GetRequiredService<CommandHandlingService>().Execute(input);
         }
 
         private IServiceProvider ConfigureServices()
@@ -49,6 +59,7 @@ namespace Pathfinder_CLI
             IServiceCollection services = new ServiceCollection();
 
             services.AddSingleton(_config)
+                .AddSingleton<CommandHandlingService>()
                 .AddAutoMapper(typeof(PathfinderRepository).Assembly)
                 .AddDbContext<DataContext>(x => x.UseSqlite(_config.GetConnectionString("DefaultConnection")))
                 .AddScoped<IPathfinderRepository, PathfinderRepository>()

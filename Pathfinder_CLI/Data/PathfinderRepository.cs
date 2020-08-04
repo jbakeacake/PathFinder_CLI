@@ -1,13 +1,20 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Pathfinder_CLI.Game.GameEntities.Characters;
 using Pathfinder_CLI.Game.GameEntities.Items;
+using Pathfinder_CLI.Models;
+using Pathfinder_CLI.Models.Interfaces;
 
 namespace Pathfinder_CLI.Data
 {
     public class PathfinderRepository : IPathfinderRepository
     {
         private readonly DataContext _context;
+        private readonly IMapper _mapper;
         public PathfinderRepository(DataContext context)
         {
             _context = context;
@@ -22,99 +29,153 @@ namespace Pathfinder_CLI.Data
             _context.Remove(entity);
         }
 
-        public Task<Armor> GetArmor(int id)
+        public async Task<ArmorData> GetArmor(int id)
         {
-            throw new System.NotImplementedException();
+            var armorData = await _context.Armor_Tbl.FirstOrDefaultAsync(x => x.Id == id);
+            return armorData;
         }
 
-        public Task<IEnumerable<Armor>> GetArmors()
+        public async Task<IEnumerable<ArmorData>> GetArmors()
         {
-            throw new System.NotImplementedException();
+            var armorData = await _context.Armor_Tbl.ToListAsync();
+            return armorData;
         }
 
-        public Task<IEnumerable<Armor>> GetArmors(int setNumber)
+        public async Task<IEnumerable<ArmorData>> GetArmors(int setNumber)
         {
-            throw new System.NotImplementedException();
+            var table = _context.Armor_Tbl;
+            List<ArmorData> armorData = await GetRandomSetOfItems<ArmorData>(table, setNumber);
+
+            return armorData;
         }
 
-        public Task<IEnumerable<EnemyEntity>> GetEnemies()
+        public async Task<IEnumerable<CharacterData>> GetEnemies()
         {
-            throw new System.NotImplementedException();
+            var enemyData = await _context.Character_Tbl.Where(data => data.Type == "Enemy").Include(x => x.Inventory).Include(x => x.Equipment).ToListAsync();
+            return enemyData;
         }
 
-        public Task<IEnumerable<EnemyEntity>> GetEnemies(int setNumber)
+        public async Task<IEnumerable<CharacterData>> GetEnemies(int setNumber)
         {
-            throw new System.NotImplementedException();
+            var enemyData = await GetRandomSetOfCharacters(setNumber, "Enemy");
+            return enemyData;
         }
 
-        public Task<EnemyEntity> GetEnemy(int id)
+        public async Task<CharacterData> GetEnemy(int id)
         {
-            throw new System.NotImplementedException();
+            var enemyData = await _context.Character_Tbl.Include(x => x.Inventory).Include(x => x.Equipment).FirstOrDefaultAsync(x => x.Id == id);
+            return enemyData;
         }
 
-        public Task<NonPlayerEntity> GetNonPlayer(int id)
+        public async Task<CharacterData> GetNonPlayer(int id)
         {
-            throw new System.NotImplementedException();
+            var npcData = await _context.Character_Tbl.Include(x => x.Inventory).Include(x => x.Equipment).FirstOrDefaultAsync(x => x.Id == id);
+            return npcData;
         }
 
-        public Task<IEnumerable<NonPlayerEntity>> GetNonPlayers()
+        public async Task<IEnumerable<CharacterData>> GetNonPlayers()
         {
-            throw new System.NotImplementedException();
+            var npcData = await _context.Character_Tbl.Where(x => x.Type == "NPC").Include(x => x.Inventory).Include(x => x.Equipment).ToListAsync();
+            return npcData;
         }
 
-        public Task<IEnumerable<NonPlayerEntity>> GetNonPlayers(int setNumber)
+        public async Task<IEnumerable<CharacterData>> GetNonPlayers(int setNumber)
         {
-            throw new System.NotImplementedException();
+            var npcData = await GetRandomSetOfCharacters(setNumber, "NPC");
+            return npcData;
         }
 
-        public Task<PlayerEntity> GetPlayer(int id)
+        public async Task<CharacterData> GetPlayer(int id)
         {
-            throw new System.NotImplementedException();
+            var playerData = await _context.Character_Tbl.Include(x => x.Inventory).Include(x => x.Equipment).FirstOrDefaultAsync(x => x.Id == id);
+            return playerData;
         }
 
-        public Task<IEnumerable<PlayerEntity>> GetPlayers()
+        public async Task<IEnumerable<CharacterData>> GetPlayers()
         {
-            throw new System.NotImplementedException();
+            var playerData = await _context.Character_Tbl.Where(x => x.Type == "Player").Include(x => x.Inventory).Include(x => x.Equipment).ToListAsync();
+            return playerData;
         }
 
-        public Task<IEnumerable<PlayerEntity>> GetPlayers(int setNumber)
+        public async Task<IEnumerable<CharacterData>> GetPlayers(int setNumber)
         {
-            throw new System.NotImplementedException();
+            var playerData = await GetRandomSetOfCharacters(setNumber, "Player");
+            return playerData;
         }
 
-        public Task<Potion> GetPotion(int id)
+        public async Task<PotionData> GetPotion(int id)
         {
-            throw new System.NotImplementedException();
+            var potionData = await _context.Potion_Tbl.FirstOrDefaultAsync(x => x.Id == id);
+            return potionData;
         }
 
-        public Task<IEnumerable<Potion>> GetPotions()
+        public async Task<IEnumerable<PotionData>> GetPotions()
         {
-            throw new System.NotImplementedException();
+            var potionData = await _context.Potion_Tbl.ToListAsync();
+            return potionData;
         }
 
-        public Task<IEnumerable<Potion>> GetPotions(int setNumber)
+        public async Task<IEnumerable<PotionData>> GetPotions(int setNumber)
         {
-            throw new System.NotImplementedException();
+            var table = _context.Potion_Tbl;
+            var potionData = await GetRandomSetOfItems<PotionData>(table, setNumber);
+            return potionData;
         }
 
-        public Task<Weapon> GetWeapon(int id)
+        public async Task<WeaponData> GetWeapon(int id)
         {
-            throw new System.NotImplementedException();
+            var weaponData = await _context.Weapon_Tbl.FirstOrDefaultAsync(x => x.Id == id);
+            return weaponData;
         }
 
-        public Task<IEnumerable<Weapon>> GetWeapons()
+        public async Task<IEnumerable<WeaponData>> GetWeapons()
         {
-            throw new System.NotImplementedException();
+            var weaponData = await _context.Weapon_Tbl.ToListAsync();
+            return weaponData;
         }
 
-        public Task<IEnumerable<Weapon>> GetWeapons(int setNumber)
+        public async Task<IEnumerable<WeaponData>> GetWeapons(int setNumber)
         {
-            throw new System.NotImplementedException();
+            var table = _context.Weapon_Tbl;
+            var weaponData = await GetRandomSetOfItems<WeaponData>(table, setNumber);
+            return weaponData;
         }
 
-        public Task<bool> SaveAll()
+        public async Task<bool> SaveAll()
         {
-            throw new System.NotImplementedException();
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        private async Task<List<TData>> GetRandomSetOfItems<TData>(DbSet<TData> table, int setNumber) where TData : class, IData
+        {
+            var count = await table.CountAsync();
+            List<TData> itemDataToReturn = new List<TData>();
+    
+            Random rand = new Random();
+            for(int i = 0; i < setNumber; i++)
+            {
+                var randomId = rand.Next(1, count);
+                var itemData = await table.FirstOrDefaultAsync(x => x.GetId() == randomId);
+                itemDataToReturn.Add(itemData);
+            }
+
+            return itemDataToReturn;
+        }
+
+        private async Task<List<CharacterData>> GetRandomSetOfCharacters(int setNumber, string Type)
+        {
+            var validIds = await _context.Character_Tbl.Where(x => x.Type == Type).Select(x => x.Id).ToListAsync();
+            List<CharacterData> characterDataToReturn = new List<CharacterData>();
+            //Get a random id, and get the character associated with that id
+            Random rand = new Random();
+            for(int i = 0; i < setNumber; i++)
+            {
+                var randomId = validIds[rand.Next(1, validIds.Count())];
+                var characterData = await _context.Character_Tbl.FirstOrDefaultAsync(x => x.Id == randomId);
+                characterDataToReturn.Add(characterData);
+            }
+
+            return characterDataToReturn;
         }
     }
 }

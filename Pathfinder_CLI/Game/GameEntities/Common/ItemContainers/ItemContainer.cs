@@ -36,6 +36,8 @@ namespace Pathfinder_CLI.Game.GameEntities.Common.ItemContainers
 
         public IInventoryItem Find(string key)
         {
+            if(!_items.ContainsKey(key))
+                return null;
             return _items[key];
         }
 
