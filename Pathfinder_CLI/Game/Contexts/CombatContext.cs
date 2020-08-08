@@ -1,8 +1,7 @@
-using Pathfinder_CLI.Game.Contexts;
 using Pathfinder_CLI.Game.GameEntities.Characters;
 using Pathfinder_CLI.Game.GameEntities.Items;
 
-namespace Pathfinder_CLI.Game.RoadMap.Contexts
+namespace Pathfinder_CLI.Game.Contexts
 {
     public class CombatContext : Context
     {

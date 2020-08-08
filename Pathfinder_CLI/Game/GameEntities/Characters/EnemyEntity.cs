@@ -21,7 +21,7 @@ namespace Pathfinder_CLI.Game.GameEntities.Characters
             _combatHelper.CombatAction(defender, equippedItem);
         }
 
-        public void ConsumePotion(Potion potion)
+        public void ConsumePotion(Item potion)
         {
             _combatHelper.ConsumePotion(potion);
         }

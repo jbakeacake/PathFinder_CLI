@@ -16,7 +16,7 @@ namespace Pathfinder_CLI.Game.GameEntities.Items
         public override void Use(CharacterEntity character)
         {
             UseConsumable((ICombative)character);
-            Console.WriteLine($"{_name} consumed. Healed for {_healValue}");
+            Console.WriteLine($"{_name} consumed. Healed for {_healValue}.");
         }
 
         public void UseConsumable(ICombative character)

@@ -5,32 +5,25 @@ using Pathfinder_CLI.Game.Commands.Attributes;
 using Pathfinder_CLI.Game.Contexts;
 using Pathfinder_CLI.Game.GameEntities.Characters;
 using Pathfinder_CLI.Game.GameEntities.Items;
-using Pathfinder_CLI.Game.RoadMap.Contexts;
 using Pathfinder_CLI.Services;
 
 namespace Pathfinder_CLI.Modules
 {
-    public class CombatModule
+    public class CombatModule : ModuleBase<CombatContext>
     {
-        private readonly IServiceProvider _provider;
-        private readonly CombatContext _combat;
         private PlayerEntity _player;
         private EnemyEntity _enemy;
-        public CombatModule(IServiceProvider provider)
+        public CombatModule(IServiceProvider provider) : base(provider)
         {
-            _provider = provider;
-            _combat = provider.GetRequiredService<CommandHandlingService>().GetCurrentContext<CombatContext>();
-            _player = _combat._player;
-            _enemy = _combat._other as EnemyEntity;
+            _player = _context._player;
+            _enemy = _context._other as EnemyEntity;
         }
 
         [Command("attack")]
-        public void Attack(string input)
+        public void Attack(string weaponName)
         {
-            // For now, we'll always assume that the second item in our input is the item name
-            var weaponName = CommandParser.ParseInput(input)[1];
             var weapon = _player._equipment.Find(weaponName) as Weapon;
-            if(weapon == null)
+            if (weapon == null)
             {
                 SendMessage($"{weaponName} not found in equipment!");
                 return;
@@ -39,21 +32,25 @@ namespace Pathfinder_CLI.Modules
         }
 
         [Command("defend")]
-        public void Defend(string input)
+        public void Defend(string armorName)
         {
-            var armorName = CommandParser.ParseInput(input)[1];
             var armor = _player._equipment.Find(armorName) as Armor;
             if (armor == null)
             {
-                SendMessage($"{armorName} not found in equipment!");
+                SendMessage($"Invalid item: '{armorName}'!");
                 return;
             }
             _player.CombatAction(_enemy, armor);
         }
 
-        private void SendMessage(string message)
+        [Command("combat")]
+        public override void DisplayCommands()
         {
-            Console.WriteLine(message);
+            SendMessage(@"Here's some combat commands you can use: 
+            > Attack 'item name' : Attack your opponent with your weapon
+            > Defend 'item name' : Defend against an attack from you opponent (increases armor class rating)
+            > Exit : Quit the game
+            ");
         }
     }
 }

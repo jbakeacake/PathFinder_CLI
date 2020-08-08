@@ -12,7 +12,7 @@ namespace Pathfinder_CLI.Game.GameEntities.Characters.Interfaces
         Stats GetCombatStats();
         void UpdateCharacterStats(); 
         void TakeDamage(int damage);
-        void ConsumePotion(Potion potion);
+        void ConsumePotion(Item item);
         void receiveDebuff(DebuffSpell debuff);
         bool isDead();
         string GetName();

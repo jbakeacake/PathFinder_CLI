@@ -9,7 +9,7 @@ using Pathfinder_CLI.Controllers;
 using Pathfinder_CLI.Data;
 using Pathfinder_CLI.Game.GameEntities.Characters;
 using Pathfinder_CLI.Game.GameEntities.Items;
-using Pathfinder_CLI.Game.RoadMap.Contexts;
+using Pathfinder_CLI.Game.Contexts;
 using Pathfinder_CLI.Helpers;
 using Pathfinder_CLI.Services;
 
@@ -44,14 +44,18 @@ namespace Pathfinder_CLI
             }
             PlayerEntity player = await services.GetRequiredService<CharacterController>().GetPlayer(999);
             EnemyEntity enemy = await services.GetRequiredService<CharacterController>().GetEnemy(1);
-            Item[] rewards = new Item[] { new Weapon("Long Claw", 100, 10, 10, 4, 8)};
+            Item[] rewards = new Item[] { new Weapon("Long Claw", 100, 10, 10, 4, 8) };
             CombatContext combatContext = new CombatContext(player, enemy, "You face an enemy!", rewards, 50, 200);
             services.GetRequiredService<CommandHandlingService>()
                 .Initialize(services)
                 .InitializeContext(combatContext)
                 .BuildCommands();
-            var input = Console.ReadLine();
-            services.GetRequiredService<CommandHandlingService>().Execute(input);
+            // var input = Console.ReadLine();
+            while (true)
+            {
+                var input = Console.ReadLine();
+                services.GetRequiredService<CommandHandlingService>().Execute(input);
+            }
         }
 
         private IServiceProvider ConfigureServices()
@@ -67,7 +71,7 @@ namespace Pathfinder_CLI
                 .AddScoped<CharacterController>()
                 .AddScoped<PotionController>()
                 .AddScoped<WeaponController>();
-            
+
             return services.BuildServiceProvider();
         }
 

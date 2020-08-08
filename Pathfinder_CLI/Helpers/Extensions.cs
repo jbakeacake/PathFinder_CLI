@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Pathfinder_CLI.Game.GameEntities.Characters;
 using Pathfinder_CLI.Game.GameEntities.Common.ItemContainers;
 using Pathfinder_CLI.Game.GameEntities.Common.Stats;
+using Pathfinder_CLI.Game.GameEntities.Items.Interfaces;
 using Pathfinder_CLI.Models;
 
 namespace Pathfinder_CLI.Helpers

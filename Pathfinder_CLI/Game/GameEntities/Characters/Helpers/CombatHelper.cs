@@ -17,9 +17,11 @@ namespace Pathfinder_CLI.Game.GameEntities.Characters.Helpers
         private string _name { get; set; }
         public CombatHelper(ICombative character, string name, Stats stats, ItemContainer inventory)
         {
+            _name = name;
             _character = character;
             _combatStats = stats;
-
+            _stats = stats;
+            _inventory = inventory;
         }
         public void CombatAction(ICombative other, Equipable equippedItem)
         {
@@ -37,13 +39,13 @@ namespace Pathfinder_CLI.Game.GameEntities.Characters.Helpers
         {
             return _combatStats;
         }
-
+        
+        // Used at end of round and after combat
         public void UpdateCharacterStats()
         {
             ResetCombatStatModifiers();
             _stats = _combatStats;
         }
-
         private void ResetCombatStatModifiers()
         {
             _combatStats._armorClass = _stats._armorClass;
@@ -72,7 +74,9 @@ namespace Pathfinder_CLI.Game.GameEntities.Characters.Helpers
 
         private void Defend(Armor armor)
         {
-            var updatedArmorClass = _combatStats.GetArmorClass() + armor.GetArmorRating();
+            var armorToAdd = armor.GetArmorRating();
+            var updatedArmorClass = _combatStats.GetArmorClass() + armorToAdd;
+            Console.WriteLine($"{_character.GetName()}'s armor rating increased by: {armorToAdd}!");
             _combatStats.SetArmorClass(updatedArmorClass);
         }
 
@@ -98,8 +102,9 @@ namespace Pathfinder_CLI.Game.GameEntities.Characters.Helpers
             }
         }
 
-        public void ConsumePotion(Potion potion)
+        public void ConsumePotion(Item item)
         {
+            var potion = item as Potion;
             var updatedHP = _stats._HP + potion._healValue;
             var maxHP = _stats._maxHP;
 

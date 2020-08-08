@@ -39,12 +39,18 @@ namespace Pathfinder_CLI.Game.GameEntities.Characters
             return toRtn;
         }
 
+        public void UnEquipItem(Equipable item)
+        {
+            _equipment.Remove(item);
+            _inventory.Insert(item);
+        }
+
         public void CombatAction(ICombative defender, Equipable equippedItem)
         {
             _combatHelper.CombatAction(defender, equippedItem);
         }
 
-        public void ConsumePotion(Potion potion)
+        public void ConsumePotion(Item potion)
         {
             _combatHelper.ConsumePotion(potion);
         }

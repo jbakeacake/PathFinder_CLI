@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Pathfinder_CLI.Game.Commands;
 using Pathfinder_CLI.Game.Commands.Attributes;
@@ -11,13 +12,13 @@ namespace Pathfinder_CLI.Services
     public class CommandHandlingService
     {
         public Context _context { get; set; }
-        public Dictionary<string, Action<string>> _commandMap { get; set; }
+        public Dictionary<string, (object, MethodInfo)> _commandMap { get; set; }
         private IServiceProvider _provider { get; set; }
 
         public CommandHandlingService(IServiceProvider provider)
         {
             _provider = provider;
-            _commandMap = new Dictionary<string, Action<string>>();
+            _commandMap = new Dictionary<string, (object, MethodInfo)>();
         }
 
         public CommandHandlingService Initialize(IServiceProvider provider)
@@ -39,24 +40,42 @@ namespace Pathfinder_CLI.Services
 
         public void Execute(string input)
         {
-            string command = CommandParser.ParseInput(input)[0].Trim();
-            _commandMap[command](input);
+            var parseResults = CommandParser.ParseInput(input);
+
+            if (parseResults == null)
+                return;
+
+            var command = parseResults.Take(1).First().ToLower();
+            var parameters = parseResults.Skip(1).Take(parseResults.Count() - 1).ToArray();
+
+            var obj = _commandMap[command].Item1;
+            var method = _commandMap[command].Item2;
+
+            if(method.GetParameters().Count() != parameters.Length)
+            {
+                Console.WriteLine($"Invalid amount of parameters! Make sure you're using the command, '{command}' correctly.");
+                return;
+            }
+
+            method.Invoke(obj, parameters);
         }
 
         public void BuildCommands()
         {
             var methods = AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(x => x.GetTypes())
-                .Where(x => x.IsClass)
-                .SelectMany(x => x.GetMethods())
-                .Where(x => x.GetCustomAttributes(typeof(CommandAttribute), false).FirstOrDefault() != null);
+                .SelectMany(x => x.GetTypes()) // Select all types in our project
+                .Where(x => x.IsClass) // filter by classes
+                .SelectMany(x => x.GetMethods()) // select all methods in valid classes
+                .Where(x => x.GetCustomAttributes(typeof(CommandAttribute), false).FirstOrDefault() != null); // filter by our command attribute
 
+            // Iterate through each method with a CommandAttribute and add to our command map
             foreach(var method in methods)
             {
                 var attr = (CommandAttribute) Attribute.GetCustomAttribute(method, typeof(CommandAttribute)); // get the attribute of the method
-                var key = attr.Text;
+                var key = attr.Text.ToLower();
                 var obj = Activator.CreateInstance(method.DeclaringType, new object[]{ _provider }); // create an instance of the class that the method is found in
-                _commandMap.Add(key, (Action<string>) Delegate.CreateDelegate(typeof(Action<string>), obj, method));
+                // _commandMap.Add(key, (Action<string>) Delegate.CreateDelegate(typeof(Action<string>), obj, method));
+                _commandMap.Add(key, (obj, method));
             }
         }
     }

@@ -14,7 +14,6 @@ namespace Pathfinder_CLI.Data
     public class PathfinderRepository : IPathfinderRepository
     {
         private readonly DataContext _context;
-        private readonly IMapper _mapper;
         public PathfinderRepository(DataContext context)
         {
             _context = context;

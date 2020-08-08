@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Pathfinder_CLI.Game.GameEntities.Common.Interfaces;
 using Pathfinder_CLI.Game.GameEntities.Items.Interfaces;
+using Pathfinder_CLI.Helpers;
 
 namespace Pathfinder_CLI.Game.GameEntities.Common.ItemContainers
 {
@@ -9,17 +11,17 @@ namespace Pathfinder_CLI.Game.GameEntities.Common.ItemContainers
     {
         public int _maxSlots { get; set; }
         public string _name { get; set; }
-        public Dictionary<string, IInventoryItem> _items;
+        public LinkedList<IInventoryItem> _items;
         public ItemContainer(int maxSlots, string name)
         {
             _maxSlots = maxSlots;
             _name = name;
-            _items = new Dictionary<string, IInventoryItem>();
+            _items = new LinkedList<IInventoryItem>();
         }
         public ItemContainer(int maxSlots, string name, IInventoryItem[] items)
         {
             _maxSlots = maxSlots;
-            _items = new Dictionary<string, IInventoryItem>();
+            _items = new LinkedList<IInventoryItem>();
             InsertArray(items);
             _name = name;
         }
@@ -29,42 +31,34 @@ namespace Pathfinder_CLI.Game.GameEntities.Common.ItemContainers
             string toRtn = "";
             foreach (var item in _items)
             {
-                toRtn += $"> {item.Value.GetName()} \n";
+                toRtn += $"> {item.GetName()} \n";
             }
             return toRtn;
         }
 
         public IInventoryItem Find(string key)
         {
-            if(!_items.ContainsKey(key))
-                return null;
-            return _items[key];
+            var item = _items.FirstOrDefault(x => x.GetName().ToLower() == key.ToLower());
+            return item;
         }
 
         public bool Remove(string key)
         {
             var lowercaseKey = key.ToLower();
-            if (!_items.ContainsKey(lowercaseKey)) return false;
-
-            _items.Remove(lowercaseKey);
-
-            return true;
+            var item = Find(lowercaseKey);
+            var isRemoved = _items.Remove(item);
+            
+            return isRemoved;
         }
         public bool Remove(IInventoryItem item)
         {
-            var lowercaseKey = item.GetName().ToLower();
-            if (!_items.ContainsKey(lowercaseKey)) return false;
-
-            _items.Remove(lowercaseKey);
-
-            return true;
+            return _items.Remove(item);
         }
         public bool Insert(IInventoryItem item)
         {
             if (isFull()) return false;
 
-            string lowercaseKey = item.GetName().ToLower();
-            _items.Add(lowercaseKey, item);
+            _items.AddLast(item);
             return true;
         }
         public bool InsertArray(IInventoryItem[] items)
@@ -73,7 +67,9 @@ namespace Pathfinder_CLI.Game.GameEntities.Common.ItemContainers
 
             foreach (var item in items)
             {
-                Insert(item);
+                var isAdded = Insert(item);
+                if (!isAdded)
+                    return isAdded;
             }
 
             return true;
