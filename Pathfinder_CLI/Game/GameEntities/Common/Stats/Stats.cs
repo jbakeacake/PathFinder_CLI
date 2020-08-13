@@ -105,5 +105,11 @@ namespace Pathfinder_CLI.Game.GameEntities.Common.Stats
         {
             return _spellSlots;
         }
+
+        public Stats DeepCopy()
+        {
+            Stats stats = new Stats(_maxHP, _HP, _XP, _gold, _skills);
+            return stats;
+        }
     }
 }

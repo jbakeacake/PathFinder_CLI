@@ -1,3 +1,4 @@
+using System;
 using Pathfinder_CLI.Game.GameEntities.Characters.Helpers;
 using Pathfinder_CLI.Game.GameEntities.Characters.Interfaces;
 using Pathfinder_CLI.Game.GameEntities.Common.ItemContainers;
@@ -18,6 +19,12 @@ namespace Pathfinder_CLI.Game.GameEntities.Characters
 
         public void CombatAction(ICombative defender, Equipable equippedItem)
         {
+            _combatHelper.CombatAction(defender, equippedItem);
+        }
+
+        public void CombatAction(ICombative defender)
+        {
+            var equippedItem = _inventory._items.First.Value as Weapon; // for now, let's always assume that our enemy is going to attack
             _combatHelper.CombatAction(defender, equippedItem);
         }
 

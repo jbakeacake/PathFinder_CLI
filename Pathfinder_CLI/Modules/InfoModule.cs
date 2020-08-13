@@ -52,7 +52,15 @@ namespace Pathfinder_CLI.Modules
             var res = Console.ReadLine();
             if(res.ToLower().Equals("yes"))
             {
-                _player._inventory.Remove(itemName);
+                var success = _player._inventory.Remove(itemName);
+                if(success)
+                {
+                    SendMessage($"{itemName} dropped.");
+                }
+                else
+                {
+                    SendMessage($"{itemName} could not be found in your inventory!");
+                }
             }
         }
 

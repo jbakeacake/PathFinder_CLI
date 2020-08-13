@@ -19,7 +19,7 @@ namespace Pathfinder_CLI.Game.GameEntities.Characters.Helpers
         {
             _name = name;
             _character = character;
-            _combatStats = stats;
+            _combatStats = stats.DeepCopy();
             _stats = stats;
             _inventory = inventory;
         }
@@ -39,12 +39,12 @@ namespace Pathfinder_CLI.Game.GameEntities.Characters.Helpers
         {
             return _combatStats;
         }
-        
+
         // Used at end of round and after combat
         public void UpdateCharacterStats()
         {
             ResetCombatStatModifiers();
-            _stats = _combatStats;
+            _stats._HP = _combatStats._HP;
         }
         private void ResetCombatStatModifiers()
         {
@@ -63,7 +63,10 @@ namespace Pathfinder_CLI.Game.GameEntities.Characters.Helpers
             if (isHitSuccessful(other))
             {
                 var totalDamage = weapon.GetDamage() + _character.GetCombatStats().GetBaseDamage() - other.GetCombatStats().GetArmorClass();
+                if (totalDamage < 0)
+                    totalDamage = 0;
                 other.TakeDamage(totalDamage);
+                Console.WriteLine($"{_name} attacks {other.GetName()} with a {weapon.GetName()}");
                 Console.WriteLine($"{other.GetName()} took {totalDamage} points of damage!");
             }
             else
@@ -76,7 +79,7 @@ namespace Pathfinder_CLI.Game.GameEntities.Characters.Helpers
         {
             var armorToAdd = armor.GetArmorRating();
             var updatedArmorClass = _combatStats.GetArmorClass() + armorToAdd;
-            Console.WriteLine($"{_character.GetName()}'s armor rating increased by: {armorToAdd}!");
+            Console.WriteLine($"{_character.GetName()}'s armor rating increased by {armorToAdd} for a total of {updatedArmorClass}!");
             _combatStats.SetArmorClass(updatedArmorClass);
         }
 
@@ -85,9 +88,9 @@ namespace Pathfinder_CLI.Game.GameEntities.Characters.Helpers
             // The difference between speeds determines how large the hit margin is / how small the dodge margin is
             int speedDifference = _character.GetCombatStats().GetSpeed() - other.GetCombatStats().GetSpeed();
             // Having a speed difference less than or equal to 0 will result in a definite hit
-            if(speedDifference < 0)
+            if (speedDifference < 0)
                 speedDifference = 0;
- 
+
             Random rand = new Random();
             int rollToHit = rand.Next(101);
             int hitMargin = 100 - (speedDifference * 10); // Hit Successful; We use '<' because a 100 roll is always going to hit

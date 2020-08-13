@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\Pathfinder_CLI.csproj": {}
+    "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\Pathfinder_CLI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\Pathfinder_CLI.csproj": {
+    "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\Pathfinder_CLI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\Pathfinder_CLI.csproj",
+        "projectUniqueName": "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\Pathfinder_CLI.csproj",
         "projectName": "Pathfinder_CLI",
-        "projectPath": "C:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\Pathfinder_CLI.csproj",
+        "projectPath": "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\Pathfinder_CLI.csproj",
         "packagesPath": "C:\\Users\\Jacob Baker\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\obj\\",
+        "outputPath": "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

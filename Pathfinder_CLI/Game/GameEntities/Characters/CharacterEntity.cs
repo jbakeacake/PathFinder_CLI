@@ -62,6 +62,12 @@ namespace Pathfinder_CLI.Game.GameEntities.Characters
         {
             return _name;
         }
+        
+        public string CurrentHealthToString()
+        {
+            var message = $"{_name}: {_stats._HP}/{_stats._maxHP}";
+            return message;
+        }
         public void RemoveItemFrom(ItemContainer container, string itemName)
         {
             if (container.Remove(itemName))

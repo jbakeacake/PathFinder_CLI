@@ -13,12 +13,14 @@ namespace Pathfinder_CLI.Services
     {
         public Context _context { get; set; }
         public Dictionary<string, (object, MethodInfo)> _commandMap { get; set; }
+        public Dictionary<string, Type> _typeMap { get; set; }
         private IServiceProvider _provider { get; set; }
 
         public CommandHandlingService(IServiceProvider provider)
         {
             _provider = provider;
             _commandMap = new Dictionary<string, (object, MethodInfo)>();
+            _typeMap = new Dictionary<string, Type>();
         }
 
         public CommandHandlingService Initialize(IServiceProvider provider)
@@ -75,6 +77,7 @@ namespace Pathfinder_CLI.Services
                 var key = attr.Text.ToLower();
                 var obj = Activator.CreateInstance(method.DeclaringType, new object[]{ _provider }); // create an instance of the class that the method is found in
                 // _commandMap.Add(key, (Action<string>) Delegate.CreateDelegate(typeof(Action<string>), obj, method));
+                _typeMap.Add(key, method.DeclaringType);
                 _commandMap.Add(key, (obj, method));
             }
         }

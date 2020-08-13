@@ -12,6 +12,7 @@ using Pathfinder_CLI.Game.GameEntities.Items;
 using Pathfinder_CLI.Game.Contexts;
 using Pathfinder_CLI.Helpers;
 using Pathfinder_CLI.Services;
+using Pathfinder_CLI.Game.StateManagers;
 
 namespace Pathfinder_CLI
 {
@@ -51,10 +52,11 @@ namespace Pathfinder_CLI
                 .InitializeContext(combatContext)
                 .BuildCommands();
             // var input = Console.ReadLine();
+            Console.WriteLine("COMBAT BEGIN");
+            var currentManager = services.GetRequiredService<CombatStateManager>();
             while (true)
             {
-                var input = Console.ReadLine();
-                services.GetRequiredService<CommandHandlingService>().Execute(input);
+                currentManager.Run();
             }
         }
 
@@ -70,7 +72,8 @@ namespace Pathfinder_CLI
                 .AddScoped<ArmorController>()
                 .AddScoped<CharacterController>()
                 .AddScoped<PotionController>()
-                .AddScoped<WeaponController>();
+                .AddScoped<WeaponController>()
+                .AddScoped<CombatStateManager>();
 
             return services.BuildServiceProvider();
         }
