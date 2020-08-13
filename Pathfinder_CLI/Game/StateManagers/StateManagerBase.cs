@@ -63,7 +63,7 @@ namespace Pathfinder_CLI.Game.StateManagers
                 UpdateState(next);
             }
         }
+        public abstract bool IsExitingState();
         public abstract void Run();
-
     }
 }
