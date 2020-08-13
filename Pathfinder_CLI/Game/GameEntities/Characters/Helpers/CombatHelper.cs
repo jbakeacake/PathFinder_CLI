@@ -86,7 +86,7 @@ namespace Pathfinder_CLI.Game.GameEntities.Characters.Helpers
         private bool isHitSuccessful(ICombative other)
         {
             // The difference between speeds determines how large the hit margin is / how small the dodge margin is
-            int speedDifference = _character.GetCombatStats().GetSpeed() - other.GetCombatStats().GetSpeed();
+            int speedDifference = other.GetCombatStats().GetSpeed() - _character.GetCombatStats().GetSpeed();
             // Having a speed difference less than or equal to 0 will result in a definite hit
             if (speedDifference < 0)
                 speedDifference = 0;
@@ -94,7 +94,6 @@ namespace Pathfinder_CLI.Game.GameEntities.Characters.Helpers
             Random rand = new Random();
             int rollToHit = rand.Next(101);
             int hitMargin = 100 - (speedDifference * 10); // Hit Successful; We use '<' because a 100 roll is always going to hit
-
             if (rollToHit < hitMargin) // Hit Successful
             {
                 return true;
@@ -108,12 +107,12 @@ namespace Pathfinder_CLI.Game.GameEntities.Characters.Helpers
         public void ConsumePotion(Item item)
         {
             var potion = item as Potion;
-            var updatedHP = _stats._HP + potion._healValue;
-            var maxHP = _stats._maxHP;
+            var updatedHP = _combatStats._HP + potion._healValue;
+            var maxHP = _combatStats._maxHP;
 
             if (isOverhealed(updatedHP, maxHP))
                 updatedHP = maxHP;
-            _stats._HP = updatedHP;
+            _combatStats._HP = updatedHP;
 
             _inventory.Remove(potion);
         }

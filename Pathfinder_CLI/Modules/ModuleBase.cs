@@ -17,7 +17,7 @@ namespace Pathfinder_CLI.Modules
             _context = provider.GetRequiredService<CommandHandlingService>().GetCurrentContext<TContext>();
         }
 
-        public abstract void DisplayCommands();
+        public abstract bool DisplayCommands();
 
         public void SendMessage(string message)
         {

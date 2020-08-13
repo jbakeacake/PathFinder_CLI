@@ -19,5 +19,26 @@ namespace Pathfinder_CLI.Game.Contexts
             _goldWinnings = goldWinnings;
             _experienceWinnings = experienceWinnings;
         }
+
+        public Item FindReward(string itemName)
+        {
+            foreach(Item item in _rewards)
+            {
+                if(item._name.Equals(itemName))
+                    return item;
+            }
+
+            return null;
+        }
+
+        public string RewardsToString()
+        {
+            var message = $"{_goldWinnings} gp\n";
+            foreach(var item in _rewards)
+            {
+                message += $"> {item._name} \n";
+            }
+            return message;
+        }
     }
 }

@@ -9,57 +9,73 @@ namespace Pathfinder_CLI.Game.StateManagers
 {
     public class CombatStateManager : StateManagerBase<CombatContext, CombatStates>
     {
-        public CombatStateManager(IServiceProvider provider) : base(provider, CombatStates.PLAYER) {} // always start with the player
+        public CombatStateManager(IServiceProvider provider) : base(provider, CombatStates.PLAYER) { } // always start with the player
 
         public override void Run()
         {
             var player = _context._player;
             var enemy = _context._other as EnemyEntity;
-            switch(_state)
+            switch (_state)
             {
                 case CombatStates.PLAYER:
-                {
-                    player.UpdateCharacterStats();
-                    Console.WriteLine("\nPlayer Turn");
-                    PrintPlayerAndEnemyHealth(player, enemy);
-                    
-                    AwaitCommand<CombatModule>(CombatStates.ENEMY);
-                    DetermineConclusionState(player, enemy);
-                    break;
-                }
+                    {
+                        doPlayerState(player, enemy);
+                        break;
+                    }
                 case CombatStates.ENEMY:
-                {
-                    enemy.UpdateCharacterStats();
-                    Console.WriteLine("\nEnemy Turn");
-                    PrintPlayerAndEnemyHealth(player, enemy);
-                    enemy.CombatAction(player);
-
-                    UpdateState(CombatStates.PLAYER);
-                    DetermineConclusionState(player, enemy);
-                    break;
-                }
+                    {
+                        doEnemyState(player, enemy);
+                        break;
+                    }
                 case CombatStates.WIN:
-                {
-                    Console.WriteLine("* * YOU WIN * *");
-                    UpdateState(CombatStates.EXIT);
-                    break;
-                }
+                    {
+                        doWinState(player);
+                        break;
+                    }
                 case CombatStates.LOSE:
-                {
-                    Console.WriteLine(". . YOU LOSE! . .");
-                    UpdateState(CombatStates.EXIT);
-                    break;
-                }
+                    {
+                        Console.WriteLine(". . YOU LOSE! . .");
+                        UpdateState(CombatStates.EXIT);
+                        break;
+                    }
                 case CombatStates.EXIT:
-                {
-                    break;
-                }
+                    {
+                        break;
+                    }
             }
+        }
+
+        private void doEnemyState(PlayerEntity player, EnemyEntity enemy)
+        {
+            enemy.UpdateCharacterStats();
+            Console.WriteLine("\nEnemy Turn");
+            PrintPlayerAndEnemyHealth(player, enemy);
+            enemy.CombatAction(player);
+
+            UpdateState(CombatStates.PLAYER);
+            DetermineConclusionState(player, enemy);
+        }
+
+        private void doPlayerState(PlayerEntity player, EnemyEntity enemy)
+        {
+            player.UpdateCharacterStats();
+            Console.WriteLine("\nPlayer Turn");
+            PrintPlayerAndEnemyHealth(player, enemy);
+
+            AwaitCommand<CombatModule>(next: CombatStates.ENEMY);
+            DetermineConclusionState(player, enemy);
+        }
+
+        private void doWinState(PlayerEntity player)
+        {
+            Console.WriteLine("* * YOU WIN * *");
+            player._stats._XP += _context._experienceWinnings;
+            player._stats._gold += _context._goldWinnings;
         }
 
         private void DetermineConclusionState(PlayerEntity player, EnemyEntity enemy)
         {
-            if(player.isDead())
+            if (player.isDead())
             {
                 UpdateState(CombatStates.LOSE);
             }
@@ -73,6 +89,14 @@ namespace Pathfinder_CLI.Game.StateManagers
         {
             string message = $"{player.CurrentHealthToString()} | {enemy.CurrentHealthToString()}";
             Console.WriteLine(message);
+        }
+
+        public override bool IsExitingState()
+        {
+            if(_state == CombatStates.EXIT)
+                return true;
+            
+            return false;
         }
     }
 }
