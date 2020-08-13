@@ -14,39 +14,43 @@ namespace Pathfinder_CLI.Modules
             _player = _context._player;
         }
 
-        [Command("inventory")]
-        public void DisplayInventory()
+        [Command("inventory", isInfoMethod: true)]
+        public bool DisplayInventory()
         {
             SendMessage(_player._inventory.ToString());
+            return true;
         }
 
-        [Command("equipment")]
-        public void DisplayEquipment()
+        [Command("equipment", isInfoMethod: true)]
+        public bool DisplayEquipment()
         {
             SendMessage(_player._equipment.ToString());
+            return true;
         }
 
-        [Command("stats")]
-        public void DisplayStats()
+        [Command("stats", isInfoMethod: true)]
+        public bool DisplayStats()
         {
             SendMessage(_player._stats.ToString());
+            return true;
         }
 
-        [Command("use")]
-        public void Use(string itemName)
+        [Command("use", isInfoMethod: true)]
+        public bool Use(string itemName)
         {
             var item = _player._inventory.Find(itemName);
 
             if(item == null)
             {
                 SendMessage($"Could not find {itemName} in your inventory!");
-                return;
+                return false;
             }
             item.Use(_player);
+            return true;
         }
 
-        [Command("drop")]
-        public void Drop(string itemName)
+        [Command("drop", isInfoMethod: true)]
+        public bool Drop(string itemName)
         {
             SendMessage($"Are you sure you want to drop {itemName}? (yes/no)");
             var res = Console.ReadLine();
@@ -62,10 +66,11 @@ namespace Pathfinder_CLI.Modules
                     SendMessage($"{itemName} could not be found in your inventory!");
                 }
             }
+            return true;
         }
 
-        [Command("unequip")]
-        public void Unequip(string itemName)
+        [Command("unequip", isInfoMethod: true)]
+        public bool Unequip(string itemName)
         {
             var item = _player._equipment.Find(itemName);
             if(item != null)
@@ -77,19 +82,23 @@ namespace Pathfinder_CLI.Modules
             {
                 SendMessage($"{itemName} cannot be found in your equipment.");
             }
+            return true;
         }
 
-        [Command("exit")]
-        public void Exit()
+        [Command("exit", isInfoMethod: true)]
+        public bool Exit()
         {
             SendMessage("Exiting...");
             Environment.Exit(0);
+            return true;
         }
 
-        [Command("info")]
-        public override void DisplayCommands()
+        [Command("info", isInfoMethod: true)]
+        public override bool DisplayCommands()
         {
             SendMessage(@"Here's some basic commands you can use whenever: 
+            > commands : Display a list of commands you can use whenever
+            > combat : Display a list of commands you can use during/at the end of combat
             > Inventory : Display all items in your inventory
             > Equipment : Display all items in your equipment
             > Stats : Display your stats
@@ -98,6 +107,8 @@ namespace Pathfinder_CLI.Modules
             > Unequip 'item name' : Removes an item from you equipment and stores it in your inventory
             > Exit : Quit the game
             ");
+
+            return true;
         }
     }
 }

@@ -1,8 +1,10 @@
 using System;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using Microsoft.Extensions.DependencyInjection;
 using Pathfinder_CLI.Game.Commands;
+using Pathfinder_CLI.Game.Commands.Attributes;
 using Pathfinder_CLI.Game.Contexts;
 using Pathfinder_CLI.Game.StateManagers.Interfaces;
 using Pathfinder_CLI.Modules;
@@ -42,10 +44,21 @@ namespace Pathfinder_CLI.Game.StateManagers
 
             var command = parseResults.Take(1).First().ToLower();
 
-            _service.Execute(input);
-            // Console.WriteLine(_service._typeMap[command].ToString());
-            // Console.WriteLine(typeof(TModule));
-            if (_service._typeMap[command].Equals(typeof(TModule)))
+            var successfulInput = _service.Execute(input);
+            if(!successfulInput)
+                return;
+
+            Type commandType = null;
+            (object, MethodInfo) tup;
+
+            _service._typeMap.TryGetValue(command, out commandType);
+            _service._commandMap.TryGetValue(command, out tup);
+            var (_, method) = tup;
+
+
+            var attr = (CommandAttribute)Attribute.GetCustomAttribute(method, typeof(CommandAttribute)); // get the attribute of the method
+            
+            if (commandType.Equals(typeof(TModule)) && !attr.IsInfoMethod)
             {
                 UpdateState(next);
             }

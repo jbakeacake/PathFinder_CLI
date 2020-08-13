@@ -40,26 +40,29 @@ namespace Pathfinder_CLI.Services
             return _context as T;
         }
 
-        public void Execute(string input)
+        public bool Execute(string input)
         {
             var parseResults = CommandParser.ParseInput(input);
-
             if (parseResults == null)
-                return;
+                return false;
 
             var command = parseResults.Take(1).First().ToLower();
             var parameters = parseResults.Skip(1).Take(parseResults.Count() - 1).ToArray();
 
-            var obj = _commandMap[command].Item1;
-            var method = _commandMap[command].Item2;
+            (object, MethodInfo) tup;
+            var res = _commandMap.TryGetValue(command, out tup);
+            if(!res)
+                return false;
+
+            var (obj, method) = tup;
 
             if(method.GetParameters().Count() != parameters.Length)
             {
                 Console.WriteLine($"Invalid amount of parameters! Make sure you're using the command, '{command}' correctly.");
-                return;
+                return false;
             }
-
-            method.Invoke(obj, parameters);
+            bool methodSuccess = (bool) method.Invoke(obj, parameters);
+            return methodSuccess;
         }
 
         public void BuildCommands()

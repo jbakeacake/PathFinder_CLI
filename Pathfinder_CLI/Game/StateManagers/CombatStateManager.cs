@@ -23,7 +23,7 @@ namespace Pathfinder_CLI.Game.StateManagers
                     Console.WriteLine("\nPlayer Turn");
                     PrintPlayerAndEnemyHealth(player, enemy);
                     
-                    AwaitCommand<CombatModule>(CombatStates.ENEMY);
+                    AwaitCommand<CombatModule>(next: CombatStates.ENEMY);
                     DetermineConclusionState(player, enemy);
                     break;
                 }
@@ -41,7 +41,7 @@ namespace Pathfinder_CLI.Game.StateManagers
                 case CombatStates.WIN:
                 {
                     Console.WriteLine("* * YOU WIN * *");
-                    UpdateState(CombatStates.EXIT);
+                    OfferRewards(enemy);
                     break;
                 }
                 case CombatStates.LOSE:
@@ -55,6 +55,15 @@ namespace Pathfinder_CLI.Game.StateManagers
                     break;
                 }
             }
+        }
+
+        private void OfferRewards(EnemyEntity enemy)
+        {
+            Console.WriteLine($"You gained {_context._experienceWinnings} XP");
+            Console.WriteLine($"You found {_context._goldWinnings} GP");
+            Console.WriteLine($"{enemy._name} dropped the following:");
+            Console.WriteLine("(Type out: take 'item name' to pickup an item)");
+            AwaitCommand<CombatModule>(next: CombatStates.EXIT); // TODO: Transfer to reward state manager instead?
         }
 
         private void DetermineConclusionState(PlayerEntity player, EnemyEntity enemy)
