@@ -93,10 +93,7 @@ namespace Pathfinder_CLI.Game.StateManagers
 
         public override bool IsExitingState()
         {
-            if(_state == CombatStates.EXIT)
-                return true;
-            
-            return false;
+            return _state == CombatStates.EXIT ? true : false;
         }
     }
 }

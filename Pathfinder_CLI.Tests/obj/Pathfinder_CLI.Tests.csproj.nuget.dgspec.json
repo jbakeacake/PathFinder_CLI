@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jbaker/Desktop/PathFinder_CLI/Pathfinder_CLI.Tests/Pathfinder_CLI.Tests.csproj": {}
+    "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI.Tests\\Pathfinder_CLI.Tests.csproj": {}
   },
   "projects": {
-    "/Users/jbaker/Desktop/PathFinder_CLI/Pathfinder_CLI.Tests/Pathfinder_CLI.Tests.csproj": {
+    "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI.Tests\\Pathfinder_CLI.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jbaker/Desktop/PathFinder_CLI/Pathfinder_CLI.Tests/Pathfinder_CLI.Tests.csproj",
+        "projectUniqueName": "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI.Tests\\Pathfinder_CLI.Tests.csproj",
         "projectName": "Pathfinder_CLI.Tests",
-        "projectPath": "/Users/jbaker/Desktop/PathFinder_CLI/Pathfinder_CLI.Tests/Pathfinder_CLI.Tests.csproj",
-        "packagesPath": "/Users/jbaker/.nuget/packages/",
-        "outputPath": "/Users/jbaker/Desktop/PathFinder_CLI/Pathfinder_CLI.Tests/obj/",
+        "projectPath": "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI.Tests\\Pathfinder_CLI.Tests.csproj",
+        "packagesPath": "C:\\Users\\Jacob Baker\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI.Tests\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/Users/jbaker/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Jacob Baker\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -25,8 +28,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "/Users/jbaker/Desktop/PathFinder_CLI/Pathfinder_CLI/Pathfinder_CLI.csproj": {
-                "projectPath": "/Users/jbaker/Desktop/PathFinder_CLI/Pathfinder_CLI/Pathfinder_CLI.csproj"
+              "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\Pathfinder_CLI.csproj": {
+                "projectPath": "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\Pathfinder_CLI.csproj"
               }
             }
           }
@@ -72,21 +75,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.401/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/jbaker/Desktop/PathFinder_CLI/Pathfinder_CLI/Pathfinder_CLI.csproj": {
+    "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\Pathfinder_CLI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jbaker/Desktop/PathFinder_CLI/Pathfinder_CLI/Pathfinder_CLI.csproj",
+        "projectUniqueName": "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\Pathfinder_CLI.csproj",
         "projectName": "Pathfinder_CLI",
-        "projectPath": "/Users/jbaker/Desktop/PathFinder_CLI/Pathfinder_CLI/Pathfinder_CLI.csproj",
-        "packagesPath": "/Users/jbaker/.nuget/packages/",
-        "outputPath": "/Users/jbaker/Desktop/PathFinder_CLI/Pathfinder_CLI/obj/",
+        "projectPath": "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\Pathfinder_CLI.csproj",
+        "packagesPath": "C:\\Users\\Jacob Baker\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\Jacob Baker\\Desktop\\PathFinder_CLI\\Pathfinder_CLI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/Users/jbaker/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Jacob Baker\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -152,7 +158,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.401/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

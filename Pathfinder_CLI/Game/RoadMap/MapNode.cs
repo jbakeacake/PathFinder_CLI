@@ -10,20 +10,22 @@ namespace Pathfinder_CLI.Game.RoadMap
         public Context _context { get; set; }
         public MapNode[] _nextPaths { get; set; } // List of all possible paths
         public string _title { get; set; } // Describes what the entrance to this path looks like (e.g. Thorny Path, Wooden Door, Bear Cave, etc.)
-        public MapNode(Type stateManagerType, Context context, MapNode[] nextPaths)
+        public MapNode(Type stateManagerType, Context context)
         {
             _stateManagerType = stateManagerType;
             _context = context;
-            _nextPaths = LinkPaths(nextPaths);
         }
 
         public MapNode() {}
 
-        public MapNode[] LinkPaths(MapNode[] paths)
+        public MapNode[] LinkPaths(MapNode[] nextPaths)
         {
             int numSlots = GetNumberOfSlots();
             MapNode[] pathsToReturn = new MapNode[numSlots];
-
+            for(int i = 0; i < pathsToReturn.Length; i++)
+            {
+                pathsToReturn[i] = nextPaths[i];
+            }
             return pathsToReturn;
         }
 

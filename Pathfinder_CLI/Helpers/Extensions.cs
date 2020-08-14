@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Pathfinder_CLI.Game.GameEntities.Characters;
 using Pathfinder_CLI.Game.GameEntities.Common.ItemContainers;
 using Pathfinder_CLI.Game.GameEntities.Common.Stats;
@@ -40,6 +41,20 @@ namespace Pathfinder_CLI.Helpers
                 equipment);
 
             return character;
+        }
+
+        public static T[] GetColumn<T>(this T[,] matrix, int column)
+        {
+            return Enumerable.Range(0, matrix.GetLength(0))
+                .Select(x => matrix[x, column])
+                .ToArray();
+        }
+
+        public static T[] GetRow<T>(this T[,] matrix, int row)
+        {
+            return Enumerable.Range(0, matrix.GetLength(1))
+                .Select(x => matrix[row, x])
+                .ToArray();
         }
     }
 }
